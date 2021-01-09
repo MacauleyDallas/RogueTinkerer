@@ -1,0 +1,39 @@
+.careerContainer {
+    text-align: center;
+}
+
+.careerContainer div {
+    display:inline-block;
+    vertical-align: middle;
+}
+
+.arrowContainer{
+    width:10%;
+}
+
+.imageContainer {
+    width:30%;
+}
+
+.startingStats {
+    width: 100%;
+    height:100%;
+}
+.textContainer {
+    width:50%;
+}
+
+.imageContainer img {
+    height:700px;
+}
+
+.multiSelectHeading{
+    margin-top: 10px;
+    margin-bottom:5px;
+}
+
+.starterHeading {
+    margin-top: 50px;
+    margin-bottom:5px;
+}
+

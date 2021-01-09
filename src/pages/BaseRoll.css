@@ -1,0 +1,66 @@
+#rollTypeContainer {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.rollTypeButton {
+    display:inline-block;
+    margin:10px;
+    padding:10px 20px;
+    color:darkslategrey;
+    background:lightcoral
+}
+
+.selectedType {
+    color:black;
+    background:lightblue;
+}
+
+.rolledNumbersGridC {
+    margin-top:0px;
+}
+
+.rolledScores {
+    color:white
+}
+
+.blue-button, .yellow-button {
+    display:inline-block;
+    margin:10px;
+    padding:10px 20px;
+
+}
+
+.yellow-button {
+
+    background:yellow
+}
+
+.blue-button {
+    background:lightblue;
+
+}
+.hidden {
+    display:none;
+}
+
+
+@keyframes kf-color-mix {
+    0% { color:maroon }
+    100% { color: limeGreen }
+  }
+  
+
+  .rolledScores {
+    animation: kf-color-mix 1s linear forwards paused;
+    color: currentColor;
+  }
+
+
+.selectedTypeContainer {
+    display: block;
+}
+
+.manualEntryBoxes {
+    text-align:center;
+}

@@ -1,0 +1,64 @@
+
+.ItemSelectBoxBox {
+    display:inline-block;
+    border:1px solid yellow;
+    background:darkslategray;
+}
+
+.ItemSelectBox {
+    padding:5px 10px;
+    margin:0px;
+    border-right: 1px solid yellow;
+    color:grey;
+}
+
+.ItemSelectBox:nth-last-child(1) {
+border: none;
+}
+
+.selectedItem {
+    color:white;
+}
+
+.SkillBox {
+    display:inline-block;
+    border:1px solid #1c49a4;
+    background:darkslategray;
+    padding:5px;
+    
+}
+
+.TalentBox {
+    display:inline-block;
+    border:1px solid firebrick;
+    background:darkslategray;
+    padding:5px;  
+}
+
+.ItemBox {
+    display:inline-block;
+    border:1px solid yellow;
+    background:darkslategray;
+    padding:5px;
+    
+}
+
+.AttrBox {
+    display:inline-block;
+    border:1px solid purple;
+    background:darkslategray;
+    padding:5px;
+    
+}
+
+.FeatureBox {
+    display:inline-block;
+    border:1px solid orange;
+    background:darkslategray;
+    padding:5px;
+    
+}
+
+.SelectBox {
+
+}
