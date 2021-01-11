@@ -5,6 +5,7 @@ import './CareerSelector.css'
 import { Container, Tooltip, withStyles, Grid} from '@material-ui/core';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import RuleBook from './resources/rulebook.json'
+import SetSelectedItem from './SetSelectedItem'
 
 import ObjectBoxes from './ObjectBoxes'
 
@@ -21,19 +22,13 @@ import ObjectBoxes from './ObjectBoxes'
          }
      }
 
-    setSelectedItem (e, parentIndex, index, item) {
-        let id = 'itemSelectBox-' + parentIndex + '-' + index
-        
-        let elements = document.getElementsByClassName(parentIndex)
-        
-        for (let index = 0; index < Object.keys(elements).length; index++) {
-            elements[index].classList.remove('selectedItem')
-        }
-        document.getElementById(id).classList.add('selectedItem')
-        let tCareerItems = this.state.careerItems
-        tCareerItems[parentIndex] = item
-        this.setState({careerItems: tCareerItems})
+     setSelectedItem(x, y, i, title) {
+        SetSelectedItem(x, y, i, title, this.props.choiceValues, this.props.updateParentState, 'homeworld')
+        this.props.setSelectedStats()
+
     }
+
+
 
     render () {
         let images = [AstropathImage, ArchmilitantImage]
@@ -59,39 +54,16 @@ import ObjectBoxes from './ObjectBoxes'
                         
                         <h3>{bookSection['Character Features']['Title']}</h3>
                         <p>{bookSection['Character Features']['Description']}</p>
-                        <ObjectBoxes callback={console.log} objects={bookSection['Character Features']['Mods']} />
+                        <ObjectBoxes callback={this.setSelectedItem} objects={bookSection['Character Features']['Mods']} />
 
                         {bookSection['Character Features']['Features'].map((feature) => (
                             <div>
                                 <h4>{feature.Title}</h4>
                                 <p>{feature.Description}</p>
-                                {feature.Features !== undefined && <ObjectBoxes callback={console.log} objects={feature.Features} />}
+                                {feature.Features !== undefined && <ObjectBoxes choiceValues={this.props.choiceValues} arrayTitle={feature.Title} callback={this.setSelectedItem} objects={feature.Features} />}
                             </div>
 
                         ))}
-
-
-                        {/* <div className='startingStats'>
-                            <h3 className="starterHeading">
-                                Starting Skills
-                            </h3>
-                            <ObjectBoxes type={'Skill'} objects={RuleBook.Homeworld[this.props.homeworldIndex]['StartingSkills']}/>
-                            
-                            <h3 className="starterHeading">
-                            Starting Talents
-                            </h3>
-
-                            <ObjectBoxes type={'Talent'} objects={RuleBook.Homeworld[this.props.careerIndex]['StartingTalents']} />
-
-                            <h3 className="starterHeading">
-                                Starting Gear
-                            </h3>
-                            
-                            <ObjectBoxes type={'Item'} objects={RuleBook.Homeworld[this.props.careerIndex]['StartingItems']} />
-                            <ObjectBoxes type={'Item'} choices={true} objects={RuleBook.Homeworld[this.props.careerIndex]['StartingItems']} callback={this.setSelectedItem}/>
-
-                            
-                        </div> */}
                     </div>                        
                 </div>
             </Container>
