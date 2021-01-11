@@ -15,12 +15,18 @@
         }
 
     genChoice(o, x) {
-
+        let preSelected = false
+        
+        if (this.props.choiceValues[this.props.arrayTitle] !== undefined) {
+            if (this.props.choiceValues[this.props.arrayTitle][x] !== undefined) preSelected = true
+        }
+        
+        
         let type
         return (
            <div className="ItemSelectBoxBox">
             {o['Choice'].map((i) => (
-            <div className="ItemSelectBox" id={'select' + x + '-' + o['Choice'].indexOf(i)} onClick={() => this.props.callback(x, o['Choice'].indexOf(i), i)}>
+            <div className={`ItemSelectBox ${this.props.bookTag}`} id={'select-' + this.props.arrayTitle + x + '-' + o['Choice'].indexOf(i)} onClick={() => this.props.callback(x, o['Choice'].indexOf(i), i, this.props.arrayTitle)}>
                 {Object.keys(i).forEach(element => {            
                     if (['Item', 'Skill', 'Talent', 'Feature', 'Attr', 'Type'].includes(element)) type = element
                 })}
