@@ -39,14 +39,18 @@ export default class App extends React.Component {
       allocatedValues: {},
       skillPenaltySum: [0, 0, 0, 0, 0, 0, 0, 0, 0],
       skillBonusSum: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      skillPenaltys: [],
+      skillBonusus: [],
       finalScores: [0, 0, 0, 0, 0, 0, 0, 0, 0],
       selected: {
         
         
       },
       baseRolls: [],
+      choiceValues: {},
       baseRolled: false,
       careerIndex: 0,
+      homeworldIndex: 0,
       bookmarks: [0, 0, 0, 0, 0, 0],
       isScrolling: false
     }
@@ -64,51 +68,59 @@ export default class App extends React.Component {
   setSelectedStats () {
     let selection = {}
     let selectionCount = 0
-    
+
+    selection['complete'] = false
+
     this.bookNames.forEach(bookName => {
 
-      let selectedPage = RuleBook[bookName][this.state.bookmarks[this.bookNames.indexOf(bookName)]]
-      console.log('looking in page ', selectedPage)
-      Object.keys(selectedPage).forEach(heading => {
-        if (Array.isArray(selectedPage[heading])) {
-          this.findFeatures(selectedPage, heading, selection, selectionCount, bookName)
-        } else if (typeof(selectedPage[heading]) === "object") {
-          
-        }
-      });
-      
-      console.log(selection)
+      let selectedPage = RuleBook[bookName][this.state.bookmarks[this.bookNames.indexOf(bookName)]]      
+
+      if (selection[bookName] === undefined) selection[bookName] = {}
+      selection[bookName]['selectedIndex'] = this.state.bookmarks[this.bookNames.indexOf(bookName)]
+      selection[bookName]['choices'] = []
+
+      this.exploreObjectForChoices(selectedPage, bookName, selection)
     });
-    
-    
-    
+
+    this.updateParentState({selected: selection})
   }
 
-  findFeatures (selectedPage, heading, selection, selectionCount, book) {
+  exploreObjectForChoices (ob, bookName, selection) {
+    Object.keys(ob).forEach(heading => {
+      if (Array.isArray(ob[heading])) {
+        // console.log('Found array: ', bookName, heading, ob[heading])
+        this.locateChoices(ob, heading, selection, bookName)
+        
+      } else if (typeof(ob[heading]) === "object") {
+        this.exploreObjectForChoices(ob[heading], bookName, selection)
+        
+      }
+    });
+}
+
+  locateChoices (selectedPage, heading, selection, book) {
       selectedPage[heading].forEach(element => {
-        let store = 0
         let sel = false
         let attr = false
+        // console.log('el:', element)
+        
         Object.keys(element).forEach(key => {
-          ['Item', 'Skill', 'Talent', 'Feature', 'Attr', 'Choice'].includes(key) && store++
-          if(key === 'Choice') sel = true
+          if (key === 'Choice') sel = true
           if (key === 'Attr') attr = true
         });
         
-        if (store) {
-          if (selection[book][heading] === undefined) selection[book][heading] = []
-          if (sel) {
-            selection[book][heading].push({selectionRequired: true})
-            selectionCount++
+        
+        if (sel) {
+          let xIndex = -1
   
-          } else {
-            selection[book][heading].push({selectionRequired: false})
+          let booktag = this.bookTags[this.bookNames.indexOf(book)]
+          try {
+            xIndex = this.state.choiceValues[booktag][heading][selectedPage[heading].indexOf(element)]['Value']
+          } catch (e) {
           }
-  
-          if (attr) {
-            console.log('attr', element)
-          }
-  
+          
+          let descision = {yIndex: selectedPage[heading].indexOf(element), options: element, chosen: false, xIndex: xIndex}
+          selection[book]['choices'].push(descision)         
         }
       });
     }
@@ -142,11 +154,10 @@ export default class App extends React.Component {
     if (!this.state.isScrolling) {
 
           let element = this.state.book
-          // console.log('ement', element)
           let ci = bookNames.indexOf(element)
           let pi = ci - 1 < 0 ? bookNames.length - 1 : ci - 1
           let ni = ci + 1 > bookNames.length - 1 ? 0 : ci + 1
-          // console.log('ci: ', ci, '.  pi: ', pi, '.  ni: ', ni, '.')
+
           if(document.getElementById(bookTags[ci] + 'UpperBound').getBoundingClientRect()['y'] > viewportBreakpoint) {
             this.changeScroller(1, bookNames[pi])
             this.interval = setInterval(() => this.finishScroll(bookNames[pi]), 100);
@@ -186,7 +197,6 @@ export default class App extends React.Component {
     console.log('App state', this.state)
     window.document.body.addEventListener('scroll', () => this.handleScroll());
     // this.interval = setInterval(() => console.log('App state', this.state), 100000);
-    this.setSelectedStats()
     
  }
 
@@ -278,32 +288,41 @@ export default class App extends React.Component {
   }
 
   changePage(value) {
-    let pageIndex = this.bookNames.indexOf(this.state.book)
-    // console.log(this.bookTags[pageIndex] +'PageContent')
-    setTimeout(() => {
-      let maxIndex = RuleBook[this.bookNames[pageIndex]].length - 1
-      // console.log('maxIndex', maxIndex)
+    let bookIndex = this.bookNames.indexOf(this.state.book)
+    let currentChoices = this.state.choiceValues
+    currentChoices[this.bookTags[bookIndex]] = {}
 
-      let newIndex = this.state[this.bookTags[pageIndex] + 'Index'] + value
+    let selectedItemBoxes = document.getElementsByClassName('selectedItem')
+    for (let item of selectedItemBoxes) {
+      if (item.classList.contains(this.bookTags[bookIndex])) {
+        item.classList.remove('selectedItem')
+      }
+    }
+
+    this.updateParentState({choiceValues: currentChoices})
+    
+    document.getElementById(this.bookTags[bookIndex] +'PageContent').classList.add('closedPage')
+
+    setTimeout(() => {
+      let maxIndex = RuleBook[this.bookNames[bookIndex]].length - 1
+      let newIndex = this.state.bookmarks[bookIndex] + value
 
       if (newIndex < 0) {
         newIndex = maxIndex
       } else if (newIndex > maxIndex) {
         newIndex = 0
       }
+            
+      document.getElementById(this.bookTags[bookIndex] + 'PageContent').classList.remove('closedPage')
+            
+      let bookmarks = this.state.bookmarks
+      bookmarks[this.bookNames.indexOf(this.state.book)] = newIndex
+      
+      this.updateParentState({bookmarks: bookmarks})
+      this.setSelectedStats()
 
-      document.getElementById(this.bookTags[pageIndex] +'PageContent').classList.add('closedPage')
-      console.log('Changing', this.state.book, ' to ', newIndex)
-      
-      document.getElementById(this.bookTags[pageIndex] + 'PageContent').classList.remove('closedPage')
-      
-
-      let ob = {}
-      
-      ob[this.bookTags[pageIndex] + 'Index'] = newIndex
-      // console.log('Ob:', ob)
-      this.updateParentState(ob)
     }, 300)
+    
 }
   
   menuList = ['start-core', 'start-io']
@@ -367,11 +386,13 @@ export default class App extends React.Component {
                   careerRef={this.careerRef}
                   motivationRef={this.motivationRef}
                   homeworldRef={this.homeworldRef}
-                  careerIndex={this.state.careerIndex}
-                  homeworldIndex={this.state.homeworldIndex}
+                  careerIndex={this.state.bookmarks[this.bookTags.indexOf('career')]}
+                  homeworldIndex={this.state.bookmarks[this.bookTags.indexOf('homeworld')]}
                   baseRolled={this.state.baseRolled}
                   updateParentState={this.updateParentState}
                   birthrightRef={this.birthrightRef}
+                  choiceValues={this.state.choiceValues}
+                  setSelectedStats={this.setSelectedStats}
                 />
               </Route>
             </Switch>
