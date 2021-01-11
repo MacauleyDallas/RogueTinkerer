@@ -6,7 +6,7 @@ import ls from 'local-storage'
 import './core.css'
 import HomeworldSelector from '../components/HomeworldSelector';
 
-export default class HeaderBar extends React.Component {
+export default class Core extends React.Component {
     constructor(props) {
         super(props);
 
@@ -31,15 +31,17 @@ export default class HeaderBar extends React.Component {
                             </div>
                             <div id="careerPageContent" class="pageContent">
                                 <CareerSelector
+                                    updateParentState={this.props.updateParentState}
                                     selected={this.props.selected}
                                     careerIndex={this.props.careerIndex}
+                                    choiceValues={this.props.choiceValues}
+                                    setSelectedStats={this.props.setSelectedStats}
                                 />
                             </div>
                         </div>
                     <section className={'boundBox'} id='careerLowerBound'></section>
                         
                     <section className={'bookBuffer'}></section>
-
 
 
 
@@ -51,6 +53,11 @@ export default class HeaderBar extends React.Component {
                             <div id="homeworldPageContent" class="pageContent">
                                 <HomeworldSelector
                                     homeworldIndex={this.props.homeworldIndex}
+                                    updateParentState={this.props.updateParentState}
+                                    selected={this.props.selected}
+                                    choiceValues={this.props.choiceValues}
+                                    setSelectedStats={this.props.setSelectedStats}
+
                                 />
                             </div>
                         </div>
