@@ -69,8 +69,12 @@ export default class HeaderBar extends React.Component {
     }
 
 
-    updateAllocations (e, value) {
-        let vPos = parseInt(e.nativeEvent.originalTarget.id.slice(4))
+    updateAllocations (e, child) {
+        console.log('xx', e.target.value)
+        
+        this.calcScores()
+        let value = e.target.value
+        let vPos = parseInt(child.key.slice(9))
         let tAllocatedValues = this.props.allocatedValues
         let tUnallocatedValues = this.props.unallocatedValues
         if (e.target.value === "") {
@@ -176,31 +180,34 @@ export default class HeaderBar extends React.Component {
                     <div class='toggleVstats' onClick={this.toggleScorePlacements}>{this.props.scorePlacementMode ? "Save Placements" : "Reset Placements"}</div>
                 </div>
                 <Grid container justify="center" direction="row" spacing={2}>
-                {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((value) => (
+                {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((xValue) => (
                     <Grid item xs={1.8}>
                         <Grid container className='MainAttr' direction="column" spacing={1}>
                             <Grid className='SkillName' item>
-                            {skillData['skillNames'][value]}
+                            {skillData['skillNames'][xValue]}
                             </Grid>
 
                             <Grid className='SkillAbbr' item>
-                                {skillData['skillAbbr'][value]}
+                                {skillData['skillAbbr'][xValue]}
                             </Grid>
 
                             {this.props.scorePlacementMode ?
                             <Grid className='SkillValue' item>
                             
                             <FormControl>
-                                <StyledDropdown classes={{root: 'text'}} onChange={(e) => (this.updateAllocations(e, value), this.calcScores())} id="grouped-select">
+                                <StyledDropdown
+                                id={'dropdown' + xValue}
+                                onChange={this.updateAllocations}
+                                id="grouped-select">
                                     <ListSubheader disabled='true'>Free</ListSubheader>
                             
                                     {Object.keys(skillData['unallocatedValues']).map((value) => (
-                                    <MenuItem id={`uVDB${value}`} key={`uVDB${value}`} value={value}>{skillData['unallocatedValues'][value]}</MenuItem>))}
+                                    <MenuItem id={`uVDB${value}`} key={`uVDB${xValue}${value}`} value={value}>{skillData['unallocatedValues'][value]}</MenuItem>))}
                                     
                                     <ListSubheader>Allocated</ListSubheader>
                                     {Object.keys(skillData['allocatedValues']).map((value) => (
-                                    <MenuItem disabled='true' id={`aVDB${value}`} key={`aVDB${value}`} value={skillData['allocatedValues'][value]['vPos']}>{skillData['allocatedValues'][value]['value']}</MenuItem>))}
-
+                                    <MenuItem disabled='true' id={`aVDB${value}`} key={`aVDB${xValue}${value}`} value={skillData['allocatedValues'][value]['vPos']}>{skillData['allocatedValues'][value]['value']}</MenuItem>))}
+                                    // jumppoint
                                     </StyledDropdown>
                             </FormControl>
 
@@ -209,7 +216,7 @@ export default class HeaderBar extends React.Component {
                             </Grid>
                             :
                             <Grid className='SkillValue verbose hidden' item>
-                            <p className='Num'>{skillData['skillBase'][value]}</p>
+                            <p className='Num'>{skillData['skillBase'][xValue]}</p>
                             <p className='NumTag'>Starting</p>
                             </Grid>
                             }
@@ -217,34 +224,34 @@ export default class HeaderBar extends React.Component {
                             
                             
 
-                                {Object.keys(skillData['skillBonuses'][value]).length > 0 ?
+                                {Object.keys(skillData['skillBonuses'][xValue]).length > 0 ?
                             <HtmlTooltip placement='right' title={
-                                Object.keys(skillData['skillBonuses'][value]).map((v) => (<p>{v}: - {skillData['skillBonuses'][value][v]}</p>))
+                                Object.keys(skillData['skillBonuses'][xValue]).map((v) => (<p>{v}: - {skillData['skillBonuses'][xValue][v]}</p>))
                             }>
                                 <Grid className='SkillValue verbose hidden' item>
-                                <p className='Num'>+ {skillData['skillBonusSum'][value]}</p>
+                                <p className='Num'>+ {skillData['skillBonusSum'][xValue]}</p>
                                 <p className='NumTag'>Bonuses</p>
                                 </Grid>
                             </HtmlTooltip>
                             :
                             <Grid className='SkillValue verbose hidden' item>
-                                <p className='Num'>+ {skillData['skillBonusSum'][value]}</p>
+                                <p className='Num'>+ {skillData['skillBonusSum'][xValue]}</p>
                                 <p className='NumTag'>Bonuses</p>
                             </Grid>
                             }
 
-                            {Object.keys(skillData['skillPenaltys'][value]).length > 0 ?
+                            {Object.keys(skillData['skillPenaltys'][xValue]).length > 0 ?
                             <HtmlTooltip placement='right' title={
-                                Object.keys(skillData['skillPenaltys'][value]).map((v) => (<p>{v}: - {skillData['skillPenaltys'][value][v]}</p>))
+                                Object.keys(skillData['skillPenaltys'][xValue]).map((v) => (<p>{v}: - {skillData['skillPenaltys'][xValue][v]}</p>))
                             }>
                                 <Grid className='SkillValue verbose hidden' item>
-                                <p className='Num'>- {skillData['skillPenaltySum'][value]}</p>
+                                <p className='Num'>- {skillData['skillPenaltySum'][xValue]}</p>
                                 <p className='NumTag'>Penaltys</p>
                                 </Grid>
                             </HtmlTooltip>
                             :
                             <Grid className='SkillValue verbose hidden' item>
-                                <p className='Num'>- {skillData['skillPenaltySum'][value]}</p>
+                                <p className='Num'>- {skillData['skillPenaltySum'][xValue]}</p>
                                 <p className='NumTag'>Penaltys</p>
                             </Grid>
                             }
@@ -252,12 +259,12 @@ export default class HeaderBar extends React.Component {
 
                             {this.props.scorePlacementMode ?
                             <Grid className='SkillValue verbose hidden' item>
-                            <p className='Num'>{skillData['skillFinal'][value]}</p>
+                            <p className='Num'>{skillData['skillFinal'][xValue]}</p>
                             <p className='NumTag'>Final</p>
                             </Grid>
                             :
                             <Grid className='SkillValue' item>
-                            <p className='Num'>{skillData['skillFinal'][value]}</p>
+                            <p className='Num'>{skillData['skillFinal'][xValue]}</p>
                             <p className='NumTag'>Final</p>
                             </Grid>
                             }
