@@ -20,12 +20,6 @@ export default class App extends React.Component {
   
   constructor(props) {
     super(props);
-    this.lureOfTheVoidRef = React.createRef()
-    this.trialsAndTravailsRef = React.createRef()
-    this.motivationRef = React.createRef()
-    this.homeworldRef = React.createRef()
-    this.birthrightRef = React.createRef()
-    this.careerRef = React.createRef()
     this.updateParentState = this.updateParentState.bind(this);
     this.changeScroller = this.changeScroller.bind(this);
     this.changePage = this.changePage.bind(this);
@@ -49,20 +43,28 @@ export default class App extends React.Component {
       baseRolls: [],
       choiceValues: {},
       baseRolled: false,
-      careerIndex: 0,
-      homeworldIndex: 0,
       bookmarks: [0, 0, 0, 0, 0, 0],
       isScrolling: false
     }
     
-    this.bookNames = ['Lure of the Void', 'Trials and Travails', 'Motivation', 'Career', 'Homeworld', 'Birthright']
+    this.bookNames = ['Lure of The Void', 'Trials and Travails', 'Motivation', 'Career', 'Homeworld', 'Birthright']
     this.bookTags = ['lureOfTheVoid', 'trialsAndTravails', 'motivation', 'career', 'homeworld', 'birthright']
   }
 
   executeScroll = (ref) => {
-    this.setState({isScrolling: true})
-    // disableScroll(ref)
-    ref.current.scrollIntoView()
+    console.log(document.body.scrollTo({top: 0, behavior: 'smooth'}))
+    
+    // window.scrollTo({top: 0, behavior: 'smooth'});
+    let found = document.getElementsByClassName('selectedComponent')[0]
+    found.classList.remove('selectedComponent')
+    setTimeout(() => {
+      found.classList.add('displayNone')
+      document.getElementById(ref + 'Component').classList.remove('displayNone')
+      document.getElementById(ref + 'Component').classList.add('selectedComponent')
+
+    }, 100)
+    
+    // ref.current.scrollIntoView()
   }
 
   setSelectedStats () {
@@ -72,6 +74,7 @@ export default class App extends React.Component {
     selection['complete'] = false
 
     this.bookNames.forEach(bookName => {
+      console.log(bookName)
 
       let selectedPage = RuleBook[bookName][this.state.bookmarks[this.bookNames.indexOf(bookName)]]      
 
@@ -137,51 +140,6 @@ export default class App extends React.Component {
       ls.set('storedData', data)
       console.log('Updating Parent State with: ', st)
   }
-  
-
-  
-  finishScroll(value) {
-    if (this.state.isScrolling) {
-      this.scrollTo(value)
-    }
-  }
-
-  handleScroll (event) {
-    let viewportBreakpoint = window.innerHeight/2
-    let bookNames = this.bookNames
-    let bookTags = this.bookTags
-
-    if (!this.state.isScrolling) {
-
-          let element = this.state.book
-          let ci = bookNames.indexOf(element)
-          let pi = ci - 1 < 0 ? bookNames.length - 1 : ci - 1
-          let ni = ci + 1 > bookNames.length - 1 ? 0 : ci + 1
-
-          if(document.getElementById(bookTags[ci] + 'UpperBound').getBoundingClientRect()['y'] > viewportBreakpoint) {
-            this.changeScroller(1, bookNames[pi])
-            this.interval = setInterval(() => this.finishScroll(bookNames[pi]), 100);
-            console.log('Change up to:', bookNames[pi])
-          } else if (document.getElementById(bookTags[ci] + 'LowerBound').getBoundingClientRect()['y'] < viewportBreakpoint) {
-            this.changeScroller(0, bookNames[ni])
-            this.interval = setInterval(() => this.finishScroll(bookNames[ni]), 100);
-            console.log('Change down', bookNames[ni])
-          }
-        
-
-    } else {
-      bookNames.forEach(element => {
-        if (this.state.book === element) {
-          if (Math.abs(document.getElementById(bookTags[bookNames.indexOf(element)] + 'Component').getBoundingClientRect()['y']) < 20) {
-            console.log('Landed at', element)
-            console.log('current book', this.state.book)
-            clearInterval(this.interval);
-            this.setState({isScrolling: false})
-          }    
-        }
-      });
-    }
-  }
 
   componentDidMount() {
     let data = ls.get('storedData') || {}
@@ -195,14 +153,14 @@ export default class App extends React.Component {
     retreivedState['storedData'] = data
     this.setState(retreivedState);
     console.log('App state', this.state)
-    window.document.body.addEventListener('scroll', () => this.handleScroll());
+    // window.document.body.addEventListener('scroll', () => this.handleScroll());
     // this.interval = setInterval(() => console.log('App state', this.state), 100000);
     
  }
 
  componentWillUnmount () {
   clearInterval(this.interval);
-  window.document.body.removeEventListener('scroll', this.handleScroll);
+  // window.document.body.removeEventListener('scroll', this.handleScroll);
 }
 
   changeScroller(int, title) {
@@ -256,35 +214,7 @@ export default class App extends React.Component {
   }
 
   scrollTo(title) {
-    switch (title) {
-      case 'Career':
-        this.executeScroll(this.careerRef);
-        break;
-
-      case 'Birthright':
-        this.executeScroll(this.birthrightRef);
-        break;
-
-      case 'Motivation':
-        this.executeScroll(this.motivationRef);
-        break;
-
-      case 'Trials and Travails':
-        this.executeScroll(this.trialsAndTravailsRef);
-        break;
-
-
-      case 'Lure of The Void':
-        this.executeScroll(this.lureOfTheVoidRef);
-        break;
-
-
-      case 'Homeworld':
-        this.executeScroll(this.homeworldRef);
-        break;
-      default:
-        break;
-    }
+    this.executeScroll(this.bookTags[this.bookNames.indexOf(title)])
   }
 
   changePage(value) {
@@ -312,7 +242,7 @@ export default class App extends React.Component {
       } else if (newIndex > maxIndex) {
         newIndex = 0
       }
-            
+
       document.getElementById(this.bookTags[bookIndex] + 'PageContent').classList.remove('closedPage')
             
       let bookmarks = this.state.bookmarks
@@ -321,8 +251,7 @@ export default class App extends React.Component {
       this.updateParentState({bookmarks: bookmarks})
       this.setSelectedStats()
 
-    }, 300)
-    
+    }, 100)
 }
   
   menuList = ['start-core', 'start-io']
@@ -380,17 +309,11 @@ export default class App extends React.Component {
               <Route path="/">
                 <Core
                   selected={this.state.selected} 
-                  trialsAndTravailsRef={this.trialsAndTravailsRef}
-                  birthrightRef={this.birthrightRef}
-                  lureOfTheVoidRef={this.lureOfTheVoidRef}
-                  careerRef={this.careerRef}
-                  motivationRef={this.motivationRef}
-                  homeworldRef={this.homeworldRef}
                   careerIndex={this.state.bookmarks[this.bookTags.indexOf('career')]}
                   homeworldIndex={this.state.bookmarks[this.bookTags.indexOf('homeworld')]}
+                  birthrightIndex={this.state.bookmarks[this.bookTags.indexOf('birthright')]}
                   baseRolled={this.state.baseRolled}
                   updateParentState={this.updateParentState}
-                  birthrightRef={this.birthrightRef}
                   choiceValues={this.state.choiceValues}
                   setSelectedStats={this.setSelectedStats}
                 />

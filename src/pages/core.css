@@ -23,19 +23,35 @@ section.bookBuffer {
   display: inline-block;
   position: relative;
   width:80%;
-  height:2000px;
 }
 
+.mainComponent {
+  /* display: none; */
+  opacity: 0;
+  transition: .2s;
+
+}
+
+
+
+.displayNone {
+  display:none;
+}
+
+.selectedComponent {
+
+  opacity: 100;
+  transition: .2s;
+
+}
 
 .pageSeam {
   position: relative;
   width: 100%;
-  height: 2000px;
 }
 .pageContent {
   position: absolute;
   width: 100%;
-  height:2000px;
   top: 0;
   left: 0;
   right: 0;
