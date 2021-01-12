@@ -223,6 +223,7 @@ export default class App extends React.Component {
     currentChoices[this.bookTags[bookIndex]] = {}
 
     let selectedItemBoxes = document.getElementsByClassName('selectedItem')
+    
     for (let item of selectedItemBoxes) {
       if (item.classList.contains(this.bookTags[bookIndex])) {
         item.classList.remove('selectedItem')
@@ -312,6 +313,9 @@ export default class App extends React.Component {
                   careerIndex={this.state.bookmarks[this.bookTags.indexOf('career')]}
                   homeworldIndex={this.state.bookmarks[this.bookTags.indexOf('homeworld')]}
                   birthrightIndex={this.state.bookmarks[this.bookTags.indexOf('birthright')]}
+                  lureOfTheVoidIndex={this.state.bookmarks[this.bookTags.indexOf('lureOfTheVoid')]}
+                  trialsAndTravailsIndex={this.state.bookmarks[this.bookTags.indexOf('trialsAndTravails')]}
+                  motivationIndex={this.state.bookmarks[this.bookTags.indexOf('motivation')]}
                   baseRolled={this.state.baseRolled}
                   updateParentState={this.updateParentState}
                   choiceValues={this.state.choiceValues}
