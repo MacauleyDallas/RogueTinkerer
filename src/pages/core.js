@@ -6,6 +6,10 @@ import ls from 'local-storage'
 import './core.css'
 import HomeworldSelector from '../components/HomeworldSelector';
 import BirthrightSelector from '../components/BirthrightSelector'
+import LureOfTheVoid from '../components/LureofTheVoidSelector'
+import TrialsAndTravails from '../components/TrialsAndTravailsSelector'
+import MotivationSelector from '../components/MotivationSelector'
+
 
 export default class Core extends React.Component {
     constructor(props) {
@@ -84,24 +88,65 @@ export default class Core extends React.Component {
                     </div>
 
 
-                    <div id="lureOfTheVoidComponent" class={'mainComponent displayNone displayNone'}>
-                        <h1 style={{paddingTop:'140px'}} ref={this.props.lureOfTheVoidRef}>Lure of The Void</h1>
+                    <div id="lureOfTheVoidComponent" class={'mainComponent displayNone'}>
+                        <h1 ref={this.props.birthrightRef}>Lure of The Void</h1>
                         
-                        <div style={{height:'1000px'}}>
+                        <div class="pageContainer">
+                            <div class="pageSeam">
+                            </div>
+
+                            <div id="lureOfTheVoidPageContent" class="pageContent">
+
+                                <LureOfTheVoid
+                                    updateParentState={this.props.updateParentState}
+                                    selected={this.props.selected}
+                                    lureOfTheVoidIndex={this.props.lureOfTheVoidIndex}
+                                    choiceValues={this.props.choiceValues}
+                                    setSelectedStats={this.props.setSelectedStats}
+                                />
+                        </div>
+                                
                         </div>
                     </div>
 
                     <div id="trialsAndTravailsComponent" class={'mainComponent displayNone'}>
-                        <h1 style={{paddingTop:'140px'}} ref={this.props.trialsAndTravailsRef}>TRIALS AND TRAVAILS</h1>
+                        <h1 ref={this.props.birthrightRef}>Trials And Travails</h1>
                         
-                        <div style={{height:'1000px'}}>
+                        <div class="pageContainer">
+                            <div class="pageSeam">
+                            </div>
+
+                            <div id="trialsAndTravailsPageContent" class="pageContent">
+
+                                <TrialsAndTravails
+                                    updateParentState={this.props.updateParentState}
+                                    selected={this.props.selected}
+                                    trialsAndTravailsIndex={this.props.trialsAndTravailsIndex}
+                                    choiceValues={this.props.choiceValues}
+                                    setSelectedStats={this.props.setSelectedStats}
+                                />
+                        </div>
+                                
                         </div>
                     </div>
 
                     <div id="motivationComponent" class={'mainComponent displayNone'}>
-                        <h1 style={{paddingTop:'140px'}} ref={this.props.motivationRef}>Motivation</h1>
+                        <h1 ref={this.props.birthrightRef}>Motivation</h1>
                         
-                        <div style={{height:'1000px'}}>
+                        <div class="pageContainer">
+                            <div class="pageSeam">
+                            </div>
+
+                            <div id="motivationPageContent" class="pageContent">
+                                <MotivationSelector
+                                    updateParentState={this.props.updateParentState}
+                                    selected={this.props.selected}
+                                    motivationIndex={this.props.motivationIndex}
+                                    choiceValues={this.props.choiceValues}
+                                    setSelectedStats={this.props.setSelectedStats}
+                                />
+                        </div>
+                                
                         </div>
                     </div>
                 </div>
