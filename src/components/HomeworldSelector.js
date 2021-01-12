@@ -8,11 +8,8 @@ import RuleBook from './resources/rulebook.json'
 import SetSelectedItem from './SetSelectedItem'
 
 import ObjectBoxes from './ObjectBoxes'
-
-
   
-  
-  export default class HomeworldSelector extends React.Component {
+export default class HomeworldSelector extends React.Component {
     constructor(props) {
         super(props);
         this.setSelectedItem = this.setSelectedItem.bind(this);
@@ -20,15 +17,12 @@ import ObjectBoxes from './ObjectBoxes'
             careerIndex: this.props.careerIndex,
             careerItems: []
          }
-     }
-
-     setSelectedItem(x, y, i, title) {
-        SetSelectedItem(x, y, i, title, this.props.choiceValues, this.props.updateParentState, 'homeworld')
-        this.props.setSelectedStats()
-
     }
 
-
+    setSelectedItem(x, y, i, title) {
+        SetSelectedItem(x, y, i, title, this.props.choiceValues, this.props.updateParentState, 'homeworld')
+        this.props.setSelectedStats()
+    }
 
     render () {
         let images = [AstropathImage, ArchmilitantImage]
@@ -36,13 +30,7 @@ import ObjectBoxes from './ObjectBoxes'
         return (
             <Container maxWidth='xl'>
                 <div className='careerContainer'>
-                        <div>
-                        
-                        <div className='imageContainer'>
-                            {/* <img className='careerImage' src={images[this.props.homeworldIndex]}></img> */}
-                        </div>
-                        
-                        {/* {console.log('import: ', this.props.homeworldIndex)} */}
+                    <div>
                         <div>
                             <h2>{bookSection['Title']}</h2>
                             <p><i>"{bookSection['Quote']}"</i></p>
@@ -60,7 +48,7 @@ import ObjectBoxes from './ObjectBoxes'
                             <div>
                                 <h4>{feature.Title}</h4>
                                 <p>{feature.Description}</p>
-                                {feature.Features !== undefined && <ObjectBoxes choiceValues={this.props.choiceValues} arrayTitle={feature.Title} callback={this.setSelectedItem} objects={feature.Features} />}
+                                {feature.Features !== undefined && <ObjectBoxes choiceValues={this.props.choiceValues} arrayTitle={'homeworld' + feature.Title} callback={this.setSelectedItem} objects={feature.Features} />}
                             </div>
 
                         ))}
