@@ -5,6 +5,7 @@ import CareerSelector from '../components/CareerSelector'
 import ls from 'local-storage'
 import './core.css'
 import HomeworldSelector from '../components/HomeworldSelector';
+import BirthrightSelector from '../components/BirthrightSelector'
 
 export default class Core extends React.Component {
     constructor(props) {
@@ -18,14 +19,13 @@ export default class Core extends React.Component {
     componentDidMount() {
         console.log('core props: ', this.props)
     }
+    
     render () {
         if (this.props.baseRolled) {
             return (
-                <div>
-                    <section className={'bookBuffer'}></section>
-
-                    <section className={'boundBox'} id='careerUpperBound'></section>
-                        <h1 id="careerComponent" style={{paddingTop:'140px'}} ref={this.props.careerRef}>Career</h1>
+                <div id="coreContainer">
+                    <div id="careerComponent" class={'mainComponent  selectedComponent'}>
+                        <h1 ref={this.props.careerRef}>Career</h1>
                         <div class="pageContainer">
                             <div class="pageSeam">
                             </div>
@@ -39,14 +39,12 @@ export default class Core extends React.Component {
                                 />
                             </div>
                         </div>
-                    <section className={'boundBox'} id='careerLowerBound'></section>
-                        
-                    <section className={'bookBuffer'}></section>
+                    </div>
 
 
 
-                    <section className={'boundBox'} id='homeworldUpperBound'></section>
-                        <h1 id="homeworldComponent" style={{paddingTop:'140px'}} ref={this.props.homeworldRef}>Homeworld</h1>
+                    <div id="homeworldComponent" class={'mainComponent displayNone'}>
+                        <h1 ref={this.props.homeworldRef}>Homeworld</h1>
                         <div class="pageContainer">
                             <div class="pageSeam">
                             </div>
@@ -61,54 +59,51 @@ export default class Core extends React.Component {
                                 />
                             </div>
                         </div>
-                    <section className={'boundBox'} id='homeworldLowerBound'></section>
+                    </div>
 
 
+                    <div id="birthrightComponent" class={'mainComponent displayNone'}>
+                        <h1 ref={this.props.birthrightRef}>Birthright</h1>
+                        
+                        <div class="pageContainer">
+                            <div class="pageSeam">
+                            </div>
+
+                            <div id="birthrightPageContent" class="pageContent">
+
+                                <BirthrightSelector
+                                    updateParentState={this.props.updateParentState}
+                                    selected={this.props.selected}
+                                    birthrightIndex={this.props.birthrightIndex}
+                                    choiceValues={this.props.choiceValues}
+                                    setSelectedStats={this.props.setSelectedStats}
+                                />
+                        </div>
+                                
+                        </div>
+                    </div>
 
 
-
-                    <section className={'bookBuffer'}></section>
-
-                    <section className={'boundBox'} id='birthrightUpperBound'></section>
-                        <h1 id="birthrightComponent" style={{paddingTop:'140px'}} ref={this.props.birthrightRef}>Birthright</h1>
+                    <div id="lureOfTheVoidComponent" class={'mainComponent displayNone displayNone'}>
+                        <h1 style={{paddingTop:'140px'}} ref={this.props.lureOfTheVoidRef}>Lure of The Void</h1>
                         
                         <div style={{height:'1000px'}}>
                         </div>
-                    <section className={'boundBox'} id='birthrightLowerBound'></section>
+                    </div>
 
-                    <section className={'bookBuffer'}></section>
-                    
-
-
-
-
-                    <section className={'boundBox'} id='lureOfTheVoidUpperBound'></section>
-                        <h1 id="lureOfTheVoidComponent" style={{paddingTop:'140px'}} ref={this.props.lureOfTheVoidRef}>Lure of The Void</h1>
+                    <div id="trialsAndTravailsComponent" class={'mainComponent displayNone'}>
+                        <h1 style={{paddingTop:'140px'}} ref={this.props.trialsAndTravailsRef}>TRIALS AND TRAVAILS</h1>
                         
                         <div style={{height:'1000px'}}>
                         </div>
-                    <section className={'boundBox'} id='lureOfTheVoidLowerBound'></section>
+                    </div>
 
-                    <section className={'bookBuffer'}></section>
-
-                    <section className={'boundBox'} id='trialsAndTravailsUpperBound'></section>
-                        <h1 id="trialsAndTravailsComponent" style={{paddingTop:'140px'}} ref={this.props.trialsAndTravailsRef}>TRIALS AND TRAVAILS</h1>
+                    <div id="motivationComponent" class={'mainComponent displayNone'}>
+                        <h1 style={{paddingTop:'140px'}} ref={this.props.motivationRef}>Motivation</h1>
                         
                         <div style={{height:'1000px'}}>
                         </div>
-                    <section className={'boundBox'} id='trialsAndTravailsLowerBound'></section>
-
-                    <section className={'bookBuffer'}></section>
-
-                    <section className={'boundBox'} id='motivationUpperBound'></section>
-                        <h1 id="motivationComponent" style={{paddingTop:'140px'}} ref={this.props.motivationRef}>Motivation</h1>
-                        
-                        <div style={{height:'1000px'}}>
-                        </div>
-                    <section className={'boundBox'} id='motivationLowerBound'></section>
-                        
-                    <section className={'bookBuffer'}></section>
-
+                    </div>
                 </div>
             )
             
