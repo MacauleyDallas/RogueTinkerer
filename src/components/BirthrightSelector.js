@@ -7,10 +7,8 @@ import RuleBook from './resources/rulebook.json'
 import SetSelectedItem from './SetSelectedItem'
 import ObjectBoxes from './ObjectBoxes'
 
-
   
-  
-  export default class BirthrightSelector extends React.Component {
+export default class BirthrightSelector extends React.Component {
     constructor(props) {
         super(props);
         this.setSelectedItem = this.setSelectedItem.bind(this);
@@ -26,8 +24,6 @@ import ObjectBoxes from './ObjectBoxes'
 
     }
 
-
-
     render () {
         let images = [AstropathImage, ArchmilitantImage]
         let bookSection = RuleBook.Birthright[this.props.birthrightIndex]
@@ -35,30 +31,17 @@ import ObjectBoxes from './ObjectBoxes'
             <Container maxWidth='xl'>
                 <div className='careerContainer'>
                     <div>
-                        
-                        <div className='imageContainer'>
-                            {/* <img className='careerImage' src={images[this.props.homeworldIndex]}></img> */}
-                        </div>
-                        
                         <div>
                             <h2>{bookSection['Title']}</h2>
                             <p>{bookSection['Description']}</p>
                         </div>
-                        
-{/*                        
-                        <h3>{bookSection['Character Features']['Title']}</h3>
-                        <p>{bookSection['Character Features']['Description']}</p>
-                        <ObjectBoxes callback={this.setSelectedItem} objects={bookSection['Character Features']['Mods']} />
- */}
-                            <h4>Features</h4>
+                    
+                        <h4>Features</h4>
 
-                            <ObjectBoxes choiceValues={this.props.choiceValues} 
-                            arrayTitle={'Features'} callback={this.setSelectedItem}
-                             objects={bookSection['Features']} 
-                             />
-
-    
-                        
+                        <ObjectBoxes choiceValues={this.props.choiceValues} 
+                        arrayTitle={'birthrightFeatures'} callback={this.setSelectedItem}
+                            objects={bookSection['Features']} 
+                            />
                     </div>                        
                 </div>
             </Container>

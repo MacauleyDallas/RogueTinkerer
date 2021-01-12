@@ -18,7 +18,6 @@ import ObjectBoxes from './ObjectBoxes'
      }
 
     setSelectedItem(x, y, i, title) {
-        console.log('here?')
         SetSelectedItem(x, y, i, title, this.props.choiceValues, this.props.updateParentState, 'career')
         this.props.setSelectedStats()
 
@@ -56,7 +55,7 @@ import ObjectBoxes from './ObjectBoxes'
                             <h3 className="starterHeading">
                                 Starting Gear
                             </h3>
-                            <ObjectBoxes bookTag={'career'} choiceValues={this.props.choiceValues} arrayTitle={'StartingItems'} callback={this.setSelectedItem}  objects={RuleBook.Career[this.props.careerIndex]['StartingItems']} />
+                            <ObjectBoxes bookTag={'career'} choiceValues={this.props.choiceValues} arrayTitle={'careerStartingItems'} callback={this.setSelectedItem}  objects={RuleBook.Career[this.props.careerIndex]['StartingItems']} />
                             {/* <ObjectBoxes type={'Item'} choices={true} objects={RuleBook.Career[this.props.careerIndex]['StartingItems']} callback={this.setSelectedItem}/> */}
 
                             
