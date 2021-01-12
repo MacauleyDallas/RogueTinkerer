@@ -41,7 +41,7 @@ export default class LureofTheVoid extends React.Component {
                             <div>
                                 <h4>{feature.Title}</h4>
                                 <p>{feature.Description}</p>
-                                {feature.Features !== undefined && <ObjectBoxes choiceValues={this.props.choiceValues} arrayTitle={'trials' + feature.Title} callback={this.setSelectedItem} objects={feature.Features} />}
+                                {feature.Features !== undefined && <ObjectBoxes choiceValues={this.props.choiceValues} arrayTitle={'trials' + feature.Title} bookTag={'trialsAndTravails'} callback={this.setSelectedItem} objects={feature.Features} />}
                             </div>
 
                         ))}

@@ -39,7 +39,9 @@ export default class MotivationSelector extends React.Component {
                         </div>
                         
                         <ObjectBoxes choiceValues={this.props.choiceValues} 
-                            arrayTitle={'MotivationEffect'} callback={this.setSelectedItem}
+                            arrayTitle={'MotivationEffect'}
+                            bookTag={'motivation'}
+                            callback={this.setSelectedItem}
                             objects={[bookSection['Effect']]} 
                         /> 
                     </div>                        

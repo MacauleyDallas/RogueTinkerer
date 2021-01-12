@@ -28,34 +28,26 @@ export default class LureofTheVoid extends React.Component {
 
     render () {
         let bookSection = RuleBook['Lure of The Void'][this.props.lureOfTheVoidIndex]
+        console.log('Let me know whats missing', this.props.lureOfTheVoidIndex)
         return (
             <Container maxWidth='xl'>
                 <div className='careerContainer'>
                     <div>
                         
-                        <div className='imageContainer'>
-                            {/* <img className='careerImage' src={images[this.props.homeworldIndex]}></img> */}
-                        </div>
                         
                         <div>
                             <h2>{bookSection['Title']}</h2>
                             <p>{bookSection['Description']}</p>
                         </div>
                         
-{/*                        
-                        <h3>{bookSection['Character Features']['Title']}</h3>
-                        <p>{bookSection['Character Features']['Description']}</p>
-                        <ObjectBoxes callback={this.setSelectedItem} objects={bookSection['Character Features']['Mods']} />
- */}
                            <h4>Features</h4>
 
                             <ObjectBoxes choiceValues={this.props.choiceValues} 
-                            arrayTitle={'VoidEffect'} callback={this.setSelectedItem}
+                            arrayTitle={'VoidEffect'}
+                            bookTag={'lureOfTheVoid'}
+                            callback={this.setSelectedItem}
                             objects={[bookSection['Effect']]} 
                             />
-
-
-    
                         
                     </div>                        
                 </div>
