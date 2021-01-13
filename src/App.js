@@ -52,9 +52,8 @@ export default class App extends React.Component {
   }
 
   executeScroll = (ref) => {
-    console.log(document.body.scrollTo({top: 0, behavior: 'smooth'}))
-    
-    // window.scrollTo({top: 0, behavior: 'smooth'});
+    document.body.scrollTo({top: 0, behavior: 'smooth'})
+
     let found = document.getElementsByClassName('selectedComponent')[0]
     found.classList.remove('selectedComponent')
     setTimeout(() => {
@@ -74,7 +73,6 @@ export default class App extends React.Component {
     selection['complete'] = false
 
     this.bookNames.forEach(bookName => {
-      console.log(bookName)
 
       let selectedPage = RuleBook[bookName][this.state.bookmarks[this.bookNames.indexOf(bookName)]]      
 
@@ -143,7 +141,7 @@ export default class App extends React.Component {
 
   componentDidMount() {
     let data = ls.get('storedData') || {}
-    console.log('stored data', data)
+    // console.log('stored data', data)
     let keys = Object.keys(data)
     let retreivedState = {}
     
@@ -152,7 +150,7 @@ export default class App extends React.Component {
     });
     retreivedState['storedData'] = data
     this.setState(retreivedState);
-    console.log('App state', this.state)
+    // console.log('App state', this.state)
     // window.document.body.addEventListener('scroll', () => this.handleScroll());
     // this.interval = setInterval(() => console.log('App state', this.state), 100000);
     
@@ -221,7 +219,7 @@ export default class App extends React.Component {
     let bookIndex = this.bookNames.indexOf(this.state.book)
     let currentChoices = this.state.choiceValues
     currentChoices[this.bookTags[bookIndex]] = {}
-
+    
     let selectedItemBoxes = document.getElementsByClassName('selectedItem')
     
     for (let item of selectedItemBoxes) {
