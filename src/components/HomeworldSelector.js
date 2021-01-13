@@ -18,8 +18,8 @@ export default class HomeworldSelector extends React.Component {
          }
     }
 
-    setSelectedItem(x, y, i, title) {
-        SetSelectedItem(x, y, i, title, this.props.choiceValues, this.props.updateParentState, 'homeworld')
+    setSelectedItem(x, y, i, title, dropdown) {
+        SetSelectedItem(x, y, i, title, this.props.choiceValues, this.props.updateParentState, 'homeworld', dropdown)
         this.props.setSelectedStats()
     }
 

@@ -17,7 +17,7 @@ export default class LureofTheVoid extends React.Component {
          }
      }
 
-     setSelectedItem(x, y, i, title) {
+     setSelectedItem(x, y, i, title, dropdown) {
         SetSelectedItem(x, y, i, title, this.props.choiceValues, this.props.updateParentState, 'trialsAndTravails')
         this.props.setSelectedStats()
 

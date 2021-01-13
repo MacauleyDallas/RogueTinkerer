@@ -17,8 +17,8 @@ export default class MotivationSelector extends React.Component {
          }
      }
 
-     setSelectedItem(x, y, i, title) {
-        console.log('set select', x, y, i, title)
+     setSelectedItem(x, y, i, title, dropdown) {
+        // console.log('set select', x, y, i, title)
         SetSelectedItem(x, y, i, title, this.props.choiceValues, this.props.updateParentState, 'motivation')
         this.props.setSelectedStats()
     }
