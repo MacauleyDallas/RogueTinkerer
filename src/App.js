@@ -12,9 +12,10 @@ import {
 import ls from 'local-storage'
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
-import { Grid, Container, Button, Tooltip, withStyles} from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import RuleBook from './components/resources/rulebook.json'
-import {disableScroll, enableScroll} from './components/resources/StopScroll'
+import CharacterSheet from './pages/CharacterSheet'
+
 
 export default class App extends React.Component {
   
@@ -252,7 +253,7 @@ export default class App extends React.Component {
     }, 300)
 }
   
-  menuList = ['start-core', 'start-io']
+  menuList = ['start-core', 'start-io', 'start-sheet']
   render () {
       return (
         
@@ -263,7 +264,8 @@ export default class App extends React.Component {
       <div className={'LiteralBlock'}>
           <div className='headerMenu'>
               <nav> 
-                <Link onClick={() => {let e = document.getElementsByClassName("animatedMenuSlide")[0]; e.classList.remove(...this.menuList); e.classList.add('start-core')}} to="/">Core</Link>
+                <Link onClick={() => {let e = document.getElementsByClassName("animatedMenuSlide")[0]; e.classList.remove(...this.menuList); e.classList.add('start-core')}} to="/">Lifepath</Link>
+                <Link onClick={() => {let e = document.getElementsByClassName("animatedMenuSlide")[0]; e.classList.remove(...this.menuList); e.classList.add('start-sheet')}} to="/sheet">Character Sheet</Link>
                 <Link onClick={() => {let e = document.getElementsByClassName("animatedMenuSlide")[0]; e.classList.remove(...this.menuList); e.classList.add('start-io')}} to="/io">Import/Export</Link>
                 <div className="animatedMenuSlide start-core"></div>
               </nav>
@@ -303,7 +305,8 @@ export default class App extends React.Component {
                 <Route path="/io">
                   <ImportExport />
                 </Route>
-                <Route path="/users">
+                <Route path="/sheet">
+                  <CharacterSheet />
                 </Route>
                 <Route path="/">
                   <Core
