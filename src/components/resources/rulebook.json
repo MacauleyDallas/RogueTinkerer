@@ -1825,13 +1825,9 @@
                         "Description":"Most death worlds possess plants and beasts utterly hostile to human life, and inhabitants must find any means necessary to combat them if they are to survive. Death worlders are adept at using weapons commonly found in or fashioned from their environment. Death worlders gain the Melee Weapon Training (Primitive) Talent.",
                         "Features":[
                             {
-                                "Choice":[
-                                    {
-                                        "Talent":"Melee Weapon Training",
-                                        "Groups":[
-                                            "Primitive"
-                                        ]
-                                    }
+                                "Talent":"Melee Weapon Training",
+                                "Groups":[
+                                    "Primitive"
                                 ]
                             }
                         ]
@@ -2054,39 +2050,39 @@
                             {
                                 "Choice":[
                                     {
-                                        "CharacteristicBoost":"Weapon Skill",
+                                        "Attr":"Weapon Skill",
                                         "Value":3
                                     },
                                     {
-                                        "CharacteristicBoost":"Ballistic Skill",
+                                        "Attr":"Ballistic Skill",
                                         "Value":3
                                     },
                                     {
-                                        "CharacteristicBoost":"Strength",
+                                        "Attr":"Strength",
                                         "Value":3
                                     },
                                     {
-                                        "CharacteristicBoost":"Toughness",
+                                        "Attr":"Toughness",
                                         "Value":3
                                     },
                                     {
-                                        "CharacteristicBoost":"Agility",
+                                        "Attr":"Agility",
                                         "Value":3
                                     },
                                     {
-                                        "CharacteristicBoost":"Intelligence",
+                                        "Attr":"Intelligence",
                                         "Value":3
                                     },
                                     {
-                                        "CharacteristicBoost":"Perception",
+                                        "Attr":"Perception",
                                         "Value":3
                                     },
                                     {
-                                        "CharacteristicBoost":"Will Power",
+                                        "Attr":"Will Power",
                                         "Value":3
                                     },
                                     {
-                                        "CharacteristicBoost":"Fellowship",
+                                        "Attr":"Fellowship",
                                         "Value":3
                                     }
                                 ]
@@ -3079,15 +3075,11 @@
             "Description":"Skilled women and men with unique and valuable talents, be they Navigators or Armsmen, are themselves commodities to the unscrupulous and the desperate. There are many voyages undertaken and crewed by those who have little choice in the matter, from ratings that toil under an overseer’s lash in the depths of a warship to abducted Astropaths and scions of Rogue Trader blood whose shackles may be made of silken threats and prison cells crafted by insidious blackmail but are no less real for that. Although some may see such experiences as no more than part of the 'great game” of things, you take a different view and have sworn never to be a puppet or pawn in someone else’s game again. Just who you were forced into serving in the past and how you managed to escape your bondage is a secret you rarely share, but one day your captors will have cause to remember the offence they did you and regret it.",
             "Features":[
                 {
-                    "Title":"The Ashes of War",
+                    "Title":"UPDATEr",
                     "Description":"Thanks to your shadowed past, you have picked up some knowledge on the way that you would not normally have access to. You gain a single Skill (as long as it has no prerequisites) for your character. You may also either select a single additional Common Lore Skill or improve a Common Lore Skill you already have by one level",
                     "Features":[
                         {
-                            "Skill":[
-                                {
-                                    "Choose":1
-                                }
-                            ]
+                            "Skill": "Any Skill"
                         },
                         {
                             "Choice":[
