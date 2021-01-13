@@ -174,7 +174,7 @@ export default class HeaderBar extends React.Component {
         // console.log('stats', this.props.unallocatedValues)
         
         return (
-            <Container maxWidth="md">
+            <Container style={{background:'#1c1c1c', borderRadius:'40px'}}maxWidth="md">
                 <div className="pointButtons">
                     <div class='toggleVstats' onClick={this.toggleVerboseStats}>Toggle Verbose Stats</div>
                     <div class='toggleVstats' onClick={this.toggleScorePlacements}>{this.props.scorePlacementMode ? "Save Placements" : "Reset Placements"}</div>

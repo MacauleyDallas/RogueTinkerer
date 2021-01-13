@@ -62,7 +62,7 @@ export default class App extends React.Component {
       document.getElementById(ref + 'Component').classList.remove('displayNone')
       document.getElementById(ref + 'Component').classList.add('selectedComponent')
 
-    }, 100)
+    }, 300)
     
     // ref.current.scrollIntoView()
   }
@@ -252,7 +252,7 @@ export default class App extends React.Component {
       this.updateParentState({bookmarks: bookmarks})
       this.setSelectedStats()
 
-    }, 100)
+    }, 300)
 }
   
   menuList = ['start-core', 'start-io']
