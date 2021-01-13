@@ -1,6 +1,5 @@
 import React from 'react';
-import ArchmilitantImage from '../images/Female_Rogue_Trader.png'
-import AstropathImage from '../images/astropath.png'
+
 import './CareerSelector.css'
 import { Container, Tooltip, withStyles, Grid} from '@material-ui/core';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
@@ -25,7 +24,7 @@ export default class HomeworldSelector extends React.Component {
     }
 
     render () {
-        let images = [AstropathImage, ArchmilitantImage]
+        
         let bookSection = RuleBook.Homeworld[this.props.homeworldIndex]
         return (
             <Container maxWidth='xl'>

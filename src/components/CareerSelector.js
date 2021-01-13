@@ -1,13 +1,11 @@
 import React from 'react';
-import ArchmilitantImage from '../images/Female_Rogue_Trader.png'
-import AstropathImage from '../images/astropath.png'
 import './CareerSelector.css'
 import { Container, Tooltip, withStyles, Grid} from '@material-ui/core';
 import RuleBook from './resources/rulebook.json'
 import SetSelectedItem from './SetSelectedItem'
 import ObjectBoxes from './ObjectBoxes'  
-  
-  export default class CareerSelector extends React.Component {
+
+export default class CareerSelector extends React.Component {
     constructor(props) {
         super(props);
         this.setSelectedItem = this.setSelectedItem.bind(this);
@@ -24,19 +22,15 @@ import ObjectBoxes from './ObjectBoxes'
     }
 
     render () {
-        let images = [AstropathImage, ArchmilitantImage]
         return (
             <Container maxWidth='xl'>
                 <div className='careerContainer'>
                         <div>
                         
-                        <div className='imageContainer'>
-                            <img className='careerImage' src={images[this.props.careerIndex]}></img>
-                        </div>
                         <div className='textContainer'>
-                            {/* {console.log('CarInd', this.props.careerIndex)} */}
+                            
                             <h2>{RuleBook.Career[this.props.careerIndex]['Title']}</h2>
-                            {RuleBook.Career[this.props.careerIndex]['Description'].map((Para) => <p>{Para}</p>)}
+                            {RuleBook.Career[this.props.careerIndex]['Description'].map((Para, i) => <p>{i === 0 && <span><img src={'/images/careers/' + RuleBook.Career[this.props.careerIndex]['Image']}  className='careerImage' alt="image" /></span>}{Para}</p>)}
                         </div>
 
 
@@ -56,7 +50,6 @@ import ObjectBoxes from './ObjectBoxes'
                                 Starting Gear
                             </h3>
                             <ObjectBoxes bookTag={'career'} choiceValues={this.props.choiceValues} arrayTitle={'careerStartingItems'} callback={this.setSelectedItem}  objects={RuleBook.Career[this.props.careerIndex]['StartingItems']} />
-                            {/* <ObjectBoxes type={'Item'} choices={true} objects={RuleBook.Career[this.props.careerIndex]['StartingItems']} callback={this.setSelectedItem}/> */}
 
                             
                         </div>

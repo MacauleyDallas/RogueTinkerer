@@ -11,8 +11,12 @@
     width:10%;
 }
 
-.imageContainer {
-    width:30%;
+.careerImage {
+    max-width:30%;
+    display:inline;
+    height:auto;
+    object-fit: contain;
+    float:left;
 }
 
 .startingStats {
@@ -20,7 +24,7 @@
     height:100%;
 }
 .textContainer {
-    width:50%;
+    width:100%
 }
 
 .imageContainer img {

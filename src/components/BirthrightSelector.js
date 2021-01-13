@@ -1,6 +1,5 @@
 import React from 'react';
-import ArchmilitantImage from '../images/Female_Rogue_Trader.png'
-import AstropathImage from '../images/astropath.png'
+
 import './CareerSelector.css'
 import { Container, Tooltip, withStyles, Grid} from '@material-ui/core';
 import RuleBook from './resources/rulebook.json'
@@ -25,7 +24,7 @@ export default class BirthrightSelector extends React.Component {
     }
 
     render () {
-        let images = [AstropathImage, ArchmilitantImage]
+        
         let bookSection = RuleBook.Birthright[this.props.birthrightIndex]
         return (
             <Container maxWidth='xl'>

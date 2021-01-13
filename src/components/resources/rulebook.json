@@ -2,6 +2,7 @@
     "Career":[
         {
             "Title":"Rogue Trader",
+            "Image":"rogue_trader.png",
             "Quote":"I claim this world in the name of the Emperor of Man and his Imperium. I bring justice and truth for the loyal, punishment and death for the guilty, and the spoils I take by my own hand.",
             "QuoteSource":"Ansellion Aquairre, Lord-captain of the Caelestis Imperium",
             "Description":[
@@ -128,7 +129,7 @@
         },
         {
             "Title":"Arch-Militant",
-            "Image":"",
+            "Image":"arch_militant.png",
             "Description":[
                 "The 41st Millennium is an age of total war, an age of bloodshed and toil into which every human being, from the lowliest hive-serf to the highest scion of nobility, is born. No life is untouched by the incessant wars that plague the Imperium, and countless lives are shed each year to hold at bay the forces of the traitor, the heretic, and the alien. From amongst the uncounted ranks of warriors step those for whom a life of bloodshed and war is not a death sentence, but rather a calling. Such men and women are sometimes called Arch-militants, for they have faced death over and over and have mastered every terror the savage galaxy has to offer.",
                 "Myriad are the roots of the Arch-militant. Many have served amongst the ranks of the Imperial Guard, and somehow survived against all the odds battles and campaigns that have claimed the lives of their entire regiments. Others have risen up from the native stock of hellish death worlds or are the survivors of catastrophes too terrible to contemplate. For every last stand and total defeat, it always appears that one of a handful of warriors will somehow prevail. These are the men and women whose broken but still breathing bodies are recovered from the rubble, who have dug themselves out from beneath a mound of corpses to fight again, those few who the war zone no matter how terrible fails to break but, instead, re-forges into killers without peer. Invariably, they are reassigned to other units, where their invaluable skills, or simply their luck, it is hoped will serve their new compatriots. In time, such individuals may attain the notice of higher commands and become detached 'special units” to undertake do or die missions against the deadliest of foes, while others may 'go rogue” and disappear. Some even come to serve on the personal staff of such worthies as Lord Militants or Inquisitors, and occasionally, alongside influential Rogue Traders as their own personal agents of destruction",
@@ -259,6 +260,7 @@
         },
         {
             "Title":"Astropath Transcendent",
+            "Image":"astropath_transcendent.png",
             "Description":[
                 "The Astropath Transcendent is a rare individual, indeed. He is a psyker whose powers and very essence has been touched by the light of the God-Emperor himself and who is able to form a lifeline of communication across the limitless gulfs of space, his soul armoured against the gnawing taint of the warp beyond. Each year, uncounted millions of psykers are born across the vast breadth of the Imperium. Most are detected and interred until collected by one of the fearsome Black Ships of the Adeptus Astra Telepathica. These vessels travel the galaxy in great circuits, their stygian holds inexorably filling with nascent psykers with each stop they make. The fate of the vast majority of the psykers is to fuel the insatiable fi es of the Astronomican so that the Imperium might be held together for another day. Of those allowed to live, a tiny fraction are judged strong enough to undergo tutorage and go on to serve the Imperium in a staggering array of capacities, from Inquisitor to Battle Psyker.",
                 "Those chosen to become Astropaths undergo the ritual of Soul Binding, in which the body and soul are scoured clean of the taint of the warp by the searing purity of the Emperor’s beneficenc . After months of fasting, prayer, and ritual preparation, the psykers are brought into the very depths of the Emperor’s Palace in processions of a hundred at a time, there to undergo a ritual that will kill them, drive them insane, or bind them for all eternity to the Emperor. So intense is the ritual that the supplicants’ sensory organs are almost totally overloaded—leaving them blinded by the experience—with many suffering further nerve damage, incurring loss of smell, touch, or hearing",
@@ -380,6 +382,7 @@
         },
         {
             "Title":"Explorator",
+            "Image":"explorator.png",
             "Description":[
                 "Part adventurer, part warrior, part emissary of the Machine Cult of Mars, Explorators are Tech-priests, bionically augmented adepts of the Adeptus Mechanicus. Their function is to travel into the depths of the unknown and unearth the ashes of the past in order to acquire knowledge and secrets for the glory of the Omnissiah. Something of a breed apart in the Cult Mechanicus, they are seen as a necessary evil by some of their fellows and vital agents of the Machine God by others. Explorators undertake their Quest for Knowledge across the stars, seeking out undiscovered data and unrecorded phenomena, forgotten archeotech hoards, and unknown life forms. All Mechanicus research stations, exploration ships, and outposts any distance from a Forge World are likely to be manned by Explorators. It is also the sacred function of these intrepid (or foolhardy) individuals to delve in the unexplored reaches of the galaxy, either as part of great Mechanicus-backed fleets or by attaching themselves to the Rogue Trader houses to carry them into the beyond in search of both the future and, most importantly, the past.",
                 "The lost achievements of Mankind’s Dark Age of Technology soared far beyond anything that can be made today. Only by re-learning ancient lore found scattered across the stars and painstakingly piecing it together can Man ever achieve such dizzying heights again. Attempts at improvisation or adaptation are viewed by most followers of the Omnissiah as the height of hubris. Imagining that one can set oneself above the knowledge of the Ancients without risking their deadly sins and the dark fate that led to the horrors of the Age of Strife is pure folly",
@@ -517,6 +520,7 @@
         },
         {
             "Title":"Missionary",
+            "Image":"missionary.png",
             "Quote":"To bring the Emperor’s Light into the darkness; to bring the unknown to a greater understanding of Him on Earth; this is my calling and in my wake both seeds and ashes are sown",
             "QuoteSource":"Luminorem Majoris Skent Taltos",
             "Description":[
@@ -634,6 +638,7 @@
         },
         {
             "Title":"Navigator",
+            "Image":"navigator.png",
             "Quote":"To gaze into the warp is to look into the abyss. To understand insanity itself is to become insane. Worst of all is the knowledge that while you are gazing upon it, the warp is looking back at you and laughing",
             "QuoteSource":"Kartr Hollis, Nobilite Emmissary",
             "Description":[
@@ -751,6 +756,7 @@
         },
         {
             "Title":"Seneschal",
+            "Image":"seneschal.png",
             "Quote":"Ah, he loaded fifty tons of Neusalis wheat, you say? Very interesting. That is curious—for it is rumoured the Neusalis trade route is interdicted by Ork Freebooters, and yet they say Lord-captain Halak is an honest man, don’t they...?",
             "QuoteSource":"Silas Quinyt, Factotum for the Armsmaiden",
             "Description":[
@@ -867,6 +873,7 @@
         },
         {
             "Title":"Void-master",
+            "Image":"void_master.png",
             "Quote":"“Why would I want to stay on the ground? Makes me restless. I’m at home on the deck of a ship, facing the starry black. Throne, everything else makes me feel like a sitting target!",
             "QuoteSource":"Corman Gerrus, Master of Ordnance on board the Triumph of St. Drusus",
             "Description":[
