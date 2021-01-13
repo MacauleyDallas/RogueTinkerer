@@ -8,13 +8,13 @@
 
     const HtmlTooltip = withStyles(() => ({
         tooltip: {
-        backgroundColor: '#1c1c1c',
+            backgroundColor: '#1c1c1c',
             font: 12,
-        color: 'orange',
+            color: 'orange',
         },
     }))(Tooltip);
 
-    export default class ObjectBoxes extends React.Component {
+    export default class ObjectPopup extends React.Component {
         constructor(props) {            
             super(props);
             this.getPopup = this.getPopup.bind(this);           
