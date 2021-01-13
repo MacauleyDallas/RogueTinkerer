@@ -25,7 +25,6 @@ export default class App extends React.Component {
     this.changePage = this.changePage.bind(this);
     this.setSelectedStats = this.setSelectedStats.bind(this);
     
-    
     this.state = {
       book: 'Career',
       scorePlacementMode: true,
@@ -258,69 +257,71 @@ export default class App extends React.Component {
       return (
         
       <Router>
-        <div id='stars'></div>
-        <div id='stars2'></div>
-        <div id='stars3'></div>
-        <div className='headerMenu'>
-            <nav> 
-              <Link onClick={() => {let e = document.getElementsByClassName("animatedMenuSlide")[0]; e.classList.remove(...this.menuList); e.classList.add('start-core')}} to="/">Core</Link>
-              <Link onClick={() => {let e = document.getElementsByClassName("animatedMenuSlide")[0]; e.classList.remove(...this.menuList); e.classList.add('start-io')}} to="/io">Import/Export</Link>
-              <div className="animatedMenuSlide start-core"></div>
-            </nav>
-            <div className='headControl'>
-              <div className="leftControls">
-                  
-                    <div id="scrollerBackground">
-                      <div onClick={(e) => (this.changeScroller(e.target.id === 'vAboveSelection' ? 1 : e.target.id === 'vBelowSelection' ? 0 : -1, e.target.innerText))} id='v2AboveSelection' className='vSelectScroll'>Trials and Travails</div>
-                      <div onClick={(e) => (this.changeScroller(e.target.id === 'vAboveSelection' ? 1 : e.target.id === 'vBelowSelection' ? 0 : -1, e.target.innerText))} id='vAboveSelection' className='vSelectScroll'>Motivation</div>
-                      <div onClick={(e) => (this.changeScroller(e.target.id === 'vAboveSelection' ? 1 : e.target.id === 'vBelowSelection' ? 0 : -1, e.target.innerText))} id='vSelection' className='vSelectScroll'>Career</div>
-                      <div onClick={(e) => (this.changeScroller(e.target.id === 'vAboveSelection' ? 1 : e.target.id === 'vBelowSelection' ? 0 : -1, e.target.innerText))} id='vBelowSelection' className='vSelectScroll' >Homeworld</div>
-                      <div onClick={(e) => (this.changeScroller(e.target.id === 'vAboveSelection' ? 1 : e.target.id === 'vBelowSelection' ? 0 : -1, e.target.innerText))} id='v2BelowSelection' className='vSelectScroll'>Birthright</div>
-                      <div onClick={(e) => (this.changeScroller(e.target.id === 'vAboveSelection' ? 1 : e.target.id === 'vBelowSelection' ? 0 : -1, e.target.innerText))} id='v3BelowSelection' className='vSelectScroll'>Lure of The Void</div>
-                    </div>
+      <div id='stars'></div>
+      <div id='stars2'></div>
+      <div id='stars3'></div>
+      <div className={'LiteralBlock'}>
+          <div className='headerMenu'>
+              <nav> 
+                <Link onClick={() => {let e = document.getElementsByClassName("animatedMenuSlide")[0]; e.classList.remove(...this.menuList); e.classList.add('start-core')}} to="/">Core</Link>
+                <Link onClick={() => {let e = document.getElementsByClassName("animatedMenuSlide")[0]; e.classList.remove(...this.menuList); e.classList.add('start-io')}} to="/io">Import/Export</Link>
+                <div className="animatedMenuSlide start-core"></div>
+              </nav>
+              <div className='headControl'>
+                <div className="leftControls">
+                    
+                      <div id="scrollerBackground">
+                        <div onClick={(e) => (this.changeScroller(e.target.id === 'vAboveSelection' ? 1 : e.target.id === 'vBelowSelection' ? 0 : -1, e.target.innerText))} id='v2AboveSelection' className='vSelectScroll'>Trials and Travails</div>
+                        <div onClick={(e) => (this.changeScroller(e.target.id === 'vAboveSelection' ? 1 : e.target.id === 'vBelowSelection' ? 0 : -1, e.target.innerText))} id='vAboveSelection' className='vSelectScroll'>Motivation</div>
+                        <div onClick={(e) => (this.changeScroller(e.target.id === 'vAboveSelection' ? 1 : e.target.id === 'vBelowSelection' ? 0 : -1, e.target.innerText))} id='vSelection' className='vSelectScroll'>Career</div>
+                        <div onClick={(e) => (this.changeScroller(e.target.id === 'vAboveSelection' ? 1 : e.target.id === 'vBelowSelection' ? 0 : -1, e.target.innerText))} id='vBelowSelection' className='vSelectScroll' >Homeworld</div>
+                        <div onClick={(e) => (this.changeScroller(e.target.id === 'vAboveSelection' ? 1 : e.target.id === 'vBelowSelection' ? 0 : -1, e.target.innerText))} id='v2BelowSelection' className='vSelectScroll'>Birthright</div>
+                        <div onClick={(e) => (this.changeScroller(e.target.id === 'vAboveSelection' ? 1 : e.target.id === 'vBelowSelection' ? 0 : -1, e.target.innerText))} id='v3BelowSelection' className='vSelectScroll'>Lure of The Void</div>
+                      </div>
 
 
-              </div>
-              <StatsBar
-                scorePlacementMode={this.state.scorePlacementMode}
-                unallocatedValues={this.state.unallocatedValues}
-                allocatedValues={this.state.allocatedValues}
-                baseRolls={this.state.baseRolls}
-                updateParentState={this.updateParentState}
-                skillBonusSum={this.state.skillBonusSum}
-                skillPenaltySum={this.state.skillPenaltySum}
-                finalScores={this.state.finalScores}
-                />
-            </div>
-
-        </div>
-        <div className='App'>
-        <div style={{top: document.body.clientHeight/2}} id="leftArrow"><NavigateBeforeIcon style={{fontSize:'40px'}} onClick={() => this.changePage(-1)}/></div>
-        <div style={{top: document.body.clientHeight/2}} id="rightArrow"><NavigateNextIcon style={{fontSize:'40px'}} onClick={() => this.changePage(1)}/></div>
-          <Button onClick={() => {ls.clear()}}>Clear Storage</Button>
-
-            <Switch>
-              <Route path="/io">
-                <ImportExport />
-              </Route>
-              <Route path="/users">
-              </Route>
-              <Route path="/">
-                <Core
-                  selected={this.state.selected} 
-                  careerIndex={this.state.bookmarks[this.bookTags.indexOf('career')]}
-                  homeworldIndex={this.state.bookmarks[this.bookTags.indexOf('homeworld')]}
-                  birthrightIndex={this.state.bookmarks[this.bookTags.indexOf('birthright')]}
-                  lureOfTheVoidIndex={this.state.bookmarks[this.bookTags.indexOf('lureOfTheVoid')]}
-                  trialsAndTravailsIndex={this.state.bookmarks[this.bookTags.indexOf('trialsAndTravails')]}
-                  motivationIndex={this.state.bookmarks[this.bookTags.indexOf('motivation')]}
-                  baseRolled={this.state.baseRolled}
+                </div>
+                <StatsBar
+                  scorePlacementMode={this.state.scorePlacementMode}
+                  unallocatedValues={this.state.unallocatedValues}
+                  allocatedValues={this.state.allocatedValues}
+                  baseRolls={this.state.baseRolls}
                   updateParentState={this.updateParentState}
-                  choiceValues={this.state.choiceValues}
-                  setSelectedStats={this.setSelectedStats}
-                />
-              </Route>
-            </Switch>
+                  skillBonusSum={this.state.skillBonusSum}
+                  skillPenaltySum={this.state.skillPenaltySum}
+                  finalScores={this.state.finalScores}
+                  />
+              </div>
+
+          </div>
+          <div className='App'>
+          <div style={{top: document.body.clientHeight/2}} id="leftArrow"><NavigateBeforeIcon style={{fontSize:'40px'}} onClick={() => this.changePage(-1)}/></div>
+          <div style={{top: document.body.clientHeight/2}} id="rightArrow"><NavigateNextIcon style={{fontSize:'40px'}} onClick={() => this.changePage(1)}/></div>
+            <Button onClick={() => {ls.clear()}}>Clear Storage</Button>
+
+              <Switch>
+                <Route path="/io">
+                  <ImportExport />
+                </Route>
+                <Route path="/users">
+                </Route>
+                <Route path="/">
+                  <Core
+                    selected={this.state.selected} 
+                    careerIndex={this.state.bookmarks[this.bookTags.indexOf('career')]}
+                    homeworldIndex={this.state.bookmarks[this.bookTags.indexOf('homeworld')]}
+                    birthrightIndex={this.state.bookmarks[this.bookTags.indexOf('birthright')]}
+                    lureOfTheVoidIndex={this.state.bookmarks[this.bookTags.indexOf('lureOfTheVoid')]}
+                    trialsAndTravailsIndex={this.state.bookmarks[this.bookTags.indexOf('trialsAndTravails')]}
+                    motivationIndex={this.state.bookmarks[this.bookTags.indexOf('motivation')]}
+                    baseRolled={this.state.baseRolled}
+                    updateParentState={this.updateParentState}
+                    choiceValues={this.state.choiceValues}
+                    setSelectedStats={this.setSelectedStats}
+                  />
+                </Route>
+              </Switch>
+            </div>
           </div>
         </Router>
     );
