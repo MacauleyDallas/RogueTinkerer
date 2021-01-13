@@ -1,17 +1,19 @@
-export default function SetSelectedItem(x, y, i, title, choiceValues, callback, book) {
-    let j = 0
-
-    
-    while (document.getElementById('select-' + title + x + '-' + j) !== null) {
+export default function SetSelectedItem(x, y, i, title, choiceValues, callback, book, dropdown) {
+    if (!dropdown) {
+        let j = 0
         
-        if (j === y) {
-            document.getElementById('select-' + title + x + '-' + j).classList.add('selectedItem')
+        while (document.getElementById('select-' + title + x + '-' + j) !== null) {
             
-        } else {
-            document.getElementById('select-' + title + x + '-' + j).classList.remove('selectedItem')
-        }
-        j = j + 1
+            if (j === y) {
+                document.getElementById('select-' + title + x + '-' + j).classList.add('selectedItem')
+                
+            } else {
+                document.getElementById('select-' + title + x + '-' + j).classList.remove('selectedItem')
+            }
+            j = j + 1
+        }        
     }
+    
 
     let choices = choiceValues
 
