@@ -27,7 +27,7 @@ export default class LureofTheVoid extends React.Component {
 
     render () {
         let bookSection = RuleBook['Lure of The Void'][this.props.lureOfTheVoidIndex]
-        console.log('Let me know whats missing', this.props.lureOfTheVoidIndex)
+        // console.log('Let me know whats missing', this.props.lureOfTheVoidIndex)
         return (
             <Container maxWidth='xl'>
                 <div className='careerContainer'>
