@@ -58,7 +58,7 @@ a:nth-child(2) {
 	width: 140px;
 }
 a:nth-child(3) {
-	width: 100px;
+	width: 140px;
 }
 a:nth-child(4) {
 	width: 160px;
@@ -72,14 +72,14 @@ nav .start-core {
 	left: 0;
 	background-color: #1abc9c;
 }
-nav .start-io {
+nav .start-sheet {
 	width: 140px;
 	left: 100px;
-	background-color: #e74c3c;
+	background-color: blue;
 }
-nav .start- {
-	width: 100px;
-	left: 210px;
+nav .start-io {
+	width: 140px;
+	left: 240px;
 	background-color: #3498db;
 }
 nav .start-portefolio, a:nth-child(4):hover~.animatedMenuSlide {
