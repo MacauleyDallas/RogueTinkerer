@@ -1,19 +1,16 @@
 .App {
   text-align: center;
- margin-top:140px;
 }
 .text {
 	color:white;
 }
 
-.headerMenu {
-	z-index: 10;
+#headerMenu {
+	width: 100%;
 	margin-top:-20px;
-	width:100%;
-	height:164px;
-	position:absolute;
-	background:#1c1c1c;
-	text-align:center;
+	z-index: 20;
+	position: absolute;
+	text-align: center;
 }
 
 nav {
@@ -97,22 +94,12 @@ nav .start-contact, a:nth-child(5):hover~.animatedMenuSlide {
 	background:purple
 }
 
-.leftControls {
-	margin:0 auto;
-	height:100px;
-	text-align: center;
-	padding:35px 10px;
-	float:left;
-	vertical-align: middle;
-}
-
 #leftArrow {
 	position:absolute;
 	left: 50px;
 	background-color:rgb(255, 255, 255, 0.05);
 	border-radius: 90px;
 }
-
 
 #rightArrow svg, #leftArrow svg {
 	z-index: 10;
@@ -124,79 +111,4 @@ nav .start-contact, a:nth-child(5):hover~.animatedMenuSlide {
 	right:50px;
 	background-color:rgb(255, 255, 255, 0.05);
 	border-radius: 90px;
-}
-
-#aboveSelection {
-	position: relative;
-	top:-60px;
-}
-
-#belowSelection {
-
-}
-
-.vSelectScroll {
-	top:40px;
-	position: absolute;
-	padding:10px;
-	height:20px;
-	background-color: midnightblue;
-	width:180px;
-	transition: top 200ms, opacity 200ms, visibiliy 200ms;
-	box-shadow: inset 0 0 0 2px black;
-
-}
-
-#v2AboveSelection {
-	top:-40px;
-	opacity: 0%;
-	visibility: hidden;
-}
-
-#vAboveSelection {
-	top:0px;
-	opacity: 50%;
-}
-
-#vSelection {
-	/* border: 2px solid black; */
-}
-
-#vBelowSelection {
-	top:80px;
-	opacity: 50%;
-}
-#v2BelowSelection {
-	top:120px;
-	opacity:0%;
-}
-
-#v3BelowSelection {
-	top:120px;
-	opacity:0%;
-	display:none;
-}
-
-#scrollerBackground {
-	position: absolute;
-	top:30px;
-	/* background-image: linear-gradient(rgba(0,0,0,0), maroon, rgba(0,0,0,0)); */
-	width:200px;
-	height:120px;
-	/* border-radius: 40px; */
-	/* border: 2px solid #73AD21; */
-}
-.headControl {
-	max-width: 1550px;
-	width: 100%;
-	display: block;
-	box-sizing: border-box;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-
-
-.pageHeading {
-	padding-top:160px;
 }

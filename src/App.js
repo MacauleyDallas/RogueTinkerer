@@ -22,7 +22,6 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.updateParentState = this.updateParentState.bind(this);
-    this.changeScroller = this.changeScroller.bind(this);
     this.changePage = this.changePage.bind(this);
     this.setSelectedStats = this.setSelectedStats.bind(this);
     
@@ -49,21 +48,6 @@ export default class App extends React.Component {
     
     this.bookNames = ['Lure of The Void', 'Trials and Travails', 'Motivation', 'Career', 'Homeworld', 'Birthright']
     this.bookTags = ['lureOfTheVoid', 'trialsAndTravails', 'motivation', 'career', 'homeworld', 'birthright']
-  }
-
-  executeScroll = (ref) => {
-    document.body.scrollTo({top: 0, behavior: 'smooth'})
-
-    let found = document.getElementsByClassName('selectedComponent')[0]
-    found.classList.remove('selectedComponent')
-    setTimeout(() => {
-      found.classList.add('displayNone')
-      document.getElementById(ref + 'Component').classList.remove('displayNone')
-      document.getElementById(ref + 'Component').classList.add('selectedComponent')
-
-    }, 300)
-    
-    // ref.current.scrollIntoView()
   }
 
   setSelectedStats () {
@@ -103,7 +87,6 @@ export default class App extends React.Component {
       selectedPage[heading].forEach(element => {
         let sel = false
         let attr = false
-        // console.log('el:', element)
         
         Object.keys(element).forEach(key => {
           if (key === 'Choice') sel = true
@@ -161,61 +144,11 @@ export default class App extends React.Component {
   // window.document.body.removeEventListener('scroll', this.handleScroll);
 }
 
-  changeScroller(int, title) {
-    if (int) {
-      let ob1 = document.getElementById('v2AboveSelection')
-      
-      let ob2 = document.getElementById('vBelowSelection')
-      
-      let ob3 = document.getElementById('vSelection')
-      
-      let ob4 = document.getElementById('v2BelowSelection')
-      
-      let ob5 = document.getElementById('v3BelowSelection')
-      
-      let ob6 = document.getElementById('vAboveSelection')
-      
-    
-
-      ob5.id = 'v2AboveSelection'
-      ob1.id = 'vAboveSelection'
-      ob3.id = 'vBelowSelection'
-      ob6.id = 'vSelection'
-      ob2.id = 'v2BelowSelection'
-      ob4.id = 'v3BelowSelection'
-      
-    } else {
-      
-      let ob1 = document.getElementById('v2AboveSelection')
-      
-      let ob2 = document.getElementById('vAboveSelection')
-      
-      let ob3 = document.getElementById('vSelection')
-      
-      let ob4 = document.getElementById('vBelowSelection')
-      
-      let ob5 = document.getElementById('v2BelowSelection')
-      
-      let ob6 = document.getElementById('v3BelowSelection')
-
-      ob1.id = 'v3BelowSelection'
-      ob2.id = 'v2AboveSelection'
-      ob3.id = 'vAboveSelection'
-      ob4.id = 'vSelection'
-      ob5.id = 'vBelowSelection'
-      ob6.id = 'v2BelowSelection'
-      
-    }
-
-    this.setState({book: title})
-    this.scrollTo(title);
-  }
-
-  scrollTo(title) {
-    this.executeScroll(this.bookTags[this.bookNames.indexOf(title)])
-  }
+  
 
   changePage(value) {
+
+    console.log('changing page')
     let bookIndex = this.bookNames.indexOf(this.state.book)
     let currentChoices = this.state.choiceValues
     currentChoices[this.bookTags[bookIndex]] = {}
@@ -228,9 +161,9 @@ export default class App extends React.Component {
       }
     }
 
-    this.updateParentState({choiceValues: currentChoices})
     
     document.getElementById(this.bookTags[bookIndex] +'PageContent').classList.add('closedPage')
+    this.updateParentState({choiceValues: currentChoices})
 
     setTimeout(() => {
       let maxIndex = RuleBook[this.bookNames[bookIndex]].length - 1
@@ -262,40 +195,19 @@ export default class App extends React.Component {
       <div id='stars2'></div>
       <div id='stars3'></div>
       <div className={'LiteralBlock'}>
-          <div className='headerMenu'>
-              <nav> 
-                <Link onClick={() => {let e = document.getElementsByClassName("animatedMenuSlide")[0]; e.classList.remove(...this.menuList); e.classList.add('start-core')}} to="/">Lifepath</Link>
-                <Link onClick={() => {let e = document.getElementsByClassName("animatedMenuSlide")[0]; e.classList.remove(...this.menuList); e.classList.add('start-sheet')}} to="/sheet">Character Sheet</Link>
-                <Link onClick={() => {let e = document.getElementsByClassName("animatedMenuSlide")[0]; e.classList.remove(...this.menuList); e.classList.add('start-io')}} to="/io">Import/Export</Link>
-                <div className="animatedMenuSlide start-core"></div>
-              </nav>
-              <div className='headControl'>
-                <div className="leftControls">
-                    
-                      <div id="scrollerBackground">
-                        <div onClick={(e) => (this.changeScroller(e.target.id === 'vAboveSelection' ? 1 : e.target.id === 'vBelowSelection' ? 0 : -1, e.target.innerText))} id='v2AboveSelection' className='vSelectScroll'>Trials and Travails</div>
-                        <div onClick={(e) => (this.changeScroller(e.target.id === 'vAboveSelection' ? 1 : e.target.id === 'vBelowSelection' ? 0 : -1, e.target.innerText))} id='vAboveSelection' className='vSelectScroll'>Motivation</div>
-                        <div onClick={(e) => (this.changeScroller(e.target.id === 'vAboveSelection' ? 1 : e.target.id === 'vBelowSelection' ? 0 : -1, e.target.innerText))} id='vSelection' className='vSelectScroll'>Career</div>
-                        <div onClick={(e) => (this.changeScroller(e.target.id === 'vAboveSelection' ? 1 : e.target.id === 'vBelowSelection' ? 0 : -1, e.target.innerText))} id='vBelowSelection' className='vSelectScroll' >Homeworld</div>
-                        <div onClick={(e) => (this.changeScroller(e.target.id === 'vAboveSelection' ? 1 : e.target.id === 'vBelowSelection' ? 0 : -1, e.target.innerText))} id='v2BelowSelection' className='vSelectScroll'>Birthright</div>
-                        <div onClick={(e) => (this.changeScroller(e.target.id === 'vAboveSelection' ? 1 : e.target.id === 'vBelowSelection' ? 0 : -1, e.target.innerText))} id='v3BelowSelection' className='vSelectScroll'>Lure of The Void</div>
-                      </div>
-
-
-                </div>
-                <StatsBar
-                  scorePlacementMode={this.state.scorePlacementMode}
-                  unallocatedValues={this.state.unallocatedValues}
-                  allocatedValues={this.state.allocatedValues}
-                  baseRolls={this.state.baseRolls}
-                  updateParentState={this.updateParentState}
-                  skillBonusSum={this.state.skillBonusSum}
-                  skillPenaltySum={this.state.skillPenaltySum}
-                  finalScores={this.state.finalScores}
-                  />
-              </div>
-
+          <div id="headerMenu">
+            <nav> 
+              <Link onClick={() => {let e = document.getElementsByClassName("animatedMenuSlide")[0]; e.classList.remove(...this.menuList); e.classList.add('start-core')}} to="/">Lifepath</Link>
+              <Link onClick={() => {let e = document.getElementsByClassName("animatedMenuSlide")[0]; e.classList.remove(...this.menuList); e.classList.add('start-sheet')}} to="/sheet">Character Sheet</Link>
+              <Link onClick={() => {let e = document.getElementsByClassName("animatedMenuSlide")[0]; e.classList.remove(...this.menuList); e.classList.add('start-io')}} to="/io">Import/Export</Link>
+              <div className="animatedMenuSlide start-core"></div>
+            </nav>
           </div>
+
+          {/* TODO: Move this into the core.js file */}
+          
+
+
           <div className='App'>
           <div style={{top: document.body.clientHeight/2}} id="leftArrow"><NavigateBeforeIcon style={{fontSize:'40px'}} onClick={() => this.changePage(-1)}/></div>
           <div style={{top: document.body.clientHeight/2}} id="rightArrow"><NavigateNextIcon style={{fontSize:'40px'}} onClick={() => this.changePage(1)}/></div>
@@ -321,6 +233,16 @@ export default class App extends React.Component {
                     updateParentState={this.updateParentState}
                     choiceValues={this.state.choiceValues}
                     setSelectedStats={this.setSelectedStats}
+                    bookNames={this.bookNames}
+                    bookTags={this.bookTags}
+                    StatsBarProps={{scorePlacementMode: this.state.scorePlacementMode,
+                      unallocatedValues: this.state.unallocatedValues,
+                      allocatedValues: this.state.allocatedValues,
+                      baseRolls: this.state.baseRolls,
+                      updateParentState: this.updateParentState,
+                      skillBonusSum: this.state.skillBonusSum,
+                      skillPenaltySum: this.state.skillPenaltySum,
+                      finalScores: this.state.finalScores}}
                   />
                 </Route>
               </Switch>
