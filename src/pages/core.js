@@ -2,20 +2,22 @@ import React from 'react';
 import StatsBar from '../components/StatsBar'
 import BaseRoll from './BaseRoll'
 import CareerSelector from '../components/CareerSelector'
-import ls from 'local-storage'
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import './core.css'
 import HomeworldSelector from '../components/HomeworldSelector';
 import BirthrightSelector from '../components/BirthrightSelector'
 import LureOfTheVoid from '../components/LureofTheVoidSelector'
 import TrialsAndTravails from '../components/TrialsAndTravailsSelector'
 import MotivationSelector from '../components/MotivationSelector'
+import RuleBook from '../components/resources/rulebook.json'
 
 
 export default class Core extends React.Component {
     constructor(props) {
         super(props);
         this.changeScroller = this.changeScroller.bind(this);
-
+        this.changePage = this.changePage.bind(this);
         // this.handleOnClick = this.handleOnClick.bind(this)
         this.state = {
         }
@@ -23,6 +25,46 @@ export default class Core extends React.Component {
 
     componentDidMount() {
         console.log('core props: ', this.props)
+    }
+
+    changePage(value) {
+        
+        console.log('currentbook:', this.props.book)
+        let bookIndex = this.props.bookNames.indexOf(this.props.book)
+        let currentChoices = this.props.choiceValues
+        currentChoices[this.props.bookTags[bookIndex]] = {}
+        
+        let selectedItemBoxes = document.getElementsByClassName('selectedItem')
+        
+        for (let item of selectedItemBoxes) {
+          if (item.classList.contains(this.props.bookTags[bookIndex])) {
+            item.classList.remove('selectedItem')
+          }
+        }
+    
+        
+        document.getElementById(this.props.bookTags[bookIndex] +'PageContent').classList.add('closedPage')
+        this.props.updateParentState({choiceValues: currentChoices})
+    
+        setTimeout(() => {
+          let maxIndex = RuleBook[this.props.bookNames[bookIndex]].length - 1
+          let newIndex = this.props.bookmarks[bookIndex] + value
+    
+          if (newIndex < 0) {
+            newIndex = maxIndex
+          } else if (newIndex > maxIndex) {
+            newIndex = 0
+          }
+    
+          document.getElementById(this.props.bookTags[bookIndex] + 'PageContent').classList.remove('closedPage')
+                
+          let bookmarks = this.props.bookmarks
+          bookmarks[this.props.bookNames.indexOf(this.props.book)] = newIndex
+          
+          this.props.updateParentState({bookmarks: bookmarks})
+          this.props.setSelectedStats()
+    
+        }, 300)
     }
     
     changeScroller(int, title) {
@@ -68,7 +110,6 @@ export default class Core extends React.Component {
           ob4.id = 'vSelection'
           ob5.id = 'vBelowSelection'
           ob6.id = 'v2BelowSelection'
-          
         }
     
         this.props.updateParentState({book: title})
@@ -97,6 +138,9 @@ export default class Core extends React.Component {
         if (this.props.baseRolled) {
             return (
                 <div>
+                    <div style={{top: document.body.clientHeight/2}} id="leftArrow"><NavigateBeforeIcon style={{fontSize:'40px'}} onClick={() => this.changePage(-1)}/></div>
+                    <div style={{top: document.body.clientHeight/2}} id="rightArrow"><NavigateNextIcon style={{fontSize:'40px'}} onClick={() => this.changePage(1)}/></div>
+
                     <div id='lifepathHeader'>
               <div id='headControl'>
                 <div id="leftControls">

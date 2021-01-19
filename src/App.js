@@ -10,8 +10,6 @@ import {
   Link
 } from "react-router-dom";
 import ls from 'local-storage'
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import { Button } from '@material-ui/core';
 import RuleBook from './components/resources/rulebook.json'
 import CharacterSheet from './pages/CharacterSheet'
@@ -22,7 +20,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.updateParentState = this.updateParentState.bind(this);
-    this.changePage = this.changePage.bind(this);
+    
     this.setSelectedStats = this.setSelectedStats.bind(this);
     
     this.state = {
@@ -145,47 +143,6 @@ export default class App extends React.Component {
 }
 
   
-
-  changePage(value) {
-
-    console.log('changing page')
-    let bookIndex = this.bookNames.indexOf(this.state.book)
-    let currentChoices = this.state.choiceValues
-    currentChoices[this.bookTags[bookIndex]] = {}
-    
-    let selectedItemBoxes = document.getElementsByClassName('selectedItem')
-    
-    for (let item of selectedItemBoxes) {
-      if (item.classList.contains(this.bookTags[bookIndex])) {
-        item.classList.remove('selectedItem')
-      }
-    }
-
-    
-    document.getElementById(this.bookTags[bookIndex] +'PageContent').classList.add('closedPage')
-    this.updateParentState({choiceValues: currentChoices})
-
-    setTimeout(() => {
-      let maxIndex = RuleBook[this.bookNames[bookIndex]].length - 1
-      let newIndex = this.state.bookmarks[bookIndex] + value
-
-      if (newIndex < 0) {
-        newIndex = maxIndex
-      } else if (newIndex > maxIndex) {
-        newIndex = 0
-      }
-
-      document.getElementById(this.bookTags[bookIndex] + 'PageContent').classList.remove('closedPage')
-            
-      let bookmarks = this.state.bookmarks
-      bookmarks[this.bookNames.indexOf(this.state.book)] = newIndex
-      
-      this.updateParentState({bookmarks: bookmarks})
-      this.setSelectedStats()
-
-    }, 300)
-}
-  
   menuList = ['start-core', 'start-io', 'start-sheet']
   render () {
       return (
@@ -209,8 +166,6 @@ export default class App extends React.Component {
 
 
           <div className='App'>
-          <div style={{top: document.body.clientHeight/2}} id="leftArrow"><NavigateBeforeIcon style={{fontSize:'40px'}} onClick={() => this.changePage(-1)}/></div>
-          <div style={{top: document.body.clientHeight/2}} id="rightArrow"><NavigateNextIcon style={{fontSize:'40px'}} onClick={() => this.changePage(1)}/></div>
             <Button onClick={() => {ls.clear()}}>Clear Storage</Button>
 
               <Switch>
@@ -235,6 +190,8 @@ export default class App extends React.Component {
                     setSelectedStats={this.setSelectedStats}
                     bookNames={this.bookNames}
                     bookTags={this.bookTags}
+                    book={this.state.book}
+                    bookmarks={this.state.bookmarks}
                     StatsBarProps={{scorePlacementMode: this.state.scorePlacementMode,
                       unallocatedValues: this.state.unallocatedValues,
                       allocatedValues: this.state.allocatedValues,
