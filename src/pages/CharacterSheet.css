@@ -1,0 +1,100 @@
+#skillContainer {
+    margin:0 auto;
+    text-align: center;
+    width: 100%;
+}
+
+#basicSkillContainer, #advancedSkillContainer {
+    width:50%;
+    display:inline-block;
+}
+
+.skillBox {
+    background:green;
+    margin:10px 100px;
+    padding:10px;
+    text-align: left;
+}
+
+.skillNameBox {
+	width:100px;
+	display:inline-block;
+	text-align:left;
+}
+
+.skillSlideContainer {
+	margin: 0px auto 0;
+	margin-bottom:5px;
+	text-align:left;
+	position: relative;
+	width: 590px;
+	height: 40px;
+	background-color:darkred;
+	border-radius: 8px;
+	font-size: 0;
+
+}
+.skillSlideContainer a {
+	margin-top:10px;
+	line-height: 30px;
+	height: 100%;
+	font-size: 15px;
+	display: inline-block;
+	position: relative;
+	z-index: 1;
+	text-decoration: none;
+	text-transform: uppercase;
+	text-align: center;
+	color: white;
+	cursor: pointer;
+}
+nav .skillSlider {
+	position: absolute;
+	height: 100%;
+	top: 0;
+	z-index: 0;
+	transition: all .5s ease 0s;
+	border-radius: 8px;
+}
+
+a:nth-child(1) {
+	width: 100px;
+}
+a:nth-child(2) {
+	width: 140px;
+}
+a:nth-child(3) {
+	width: 140px;
+}
+a:nth-child(4) {
+	width: 160px;
+}
+a:nth-child(5) {
+	width: 120px;
+}
+
+nav .start-core {
+	width: 100px;
+	left: 0;
+	background-color: #1abc9c;
+}
+nav .start-sheet {
+	width: 140px;
+	left: 100px;
+	background-color: blue;
+}
+nav .start-io {
+	width: 140px;
+	left: 240px;
+	background-color: #3498db;
+}
+nav .start-portefolio, a:nth-child(4):hover~.animatedMenuSlide {
+	width: 160px;
+	left: 310px;
+	background-color: #9b59b6;
+}
+nav .start-contact, a:nth-child(5):hover~.animatedMenuSlide {
+	width: 120px;
+	left: 470px;
+	background-color: #e67e22;
+}
