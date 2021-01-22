@@ -13,6 +13,7 @@ import ls from 'local-storage'
 import { Button } from '@material-ui/core';
 import RuleBook from './components/resources/rulebook.json'
 import CharacterSheet from './pages/CharacterSheet'
+import Landing from './pages/Landing'
 
 
 export default class App extends React.Component {
@@ -34,8 +35,7 @@ export default class App extends React.Component {
       skillBonusus: [],
       finalScores: [0, 0, 0, 0, 0, 0, 0, 0, 0],
       selected: {
-        
-        
+
       },
       baseRolls: [],
       choiceValues: {},
@@ -49,7 +49,7 @@ export default class App extends React.Component {
   }
 
   setSelectedStats () {
-    let selection = {}
+    let selection = this.state.selected
     let selectionCount = 0
 
     selection['complete'] = false
@@ -166,18 +166,18 @@ export default class App extends React.Component {
 
 
           <div className='App'>
-            <Button onClick={() => {ls.clear()}}>Clear Storage</Button>
-
               <Switch>
                 <Route path="/io">
                   <ImportExport />
                 </Route>
                 <Route path="/sheet">
-                  <CharacterSheet />
-                </Route>
-                <Route path="/">
-                  <Core
+                  <CharacterSheet 
                     selected={this.state.selected} 
+                  />
+                </Route>
+                <Route path="/astroassistant">
+                  <Core
+                    selected={this.state.selected}
                     careerIndex={this.state.bookmarks[this.bookTags.indexOf('career')]}
                     homeworldIndex={this.state.bookmarks[this.bookTags.indexOf('homeworld')]}
                     birthrightIndex={this.state.bookmarks[this.bookTags.indexOf('birthright')]}
@@ -202,8 +202,13 @@ export default class App extends React.Component {
                       finalScores: this.state.finalScores}}
                   />
                 </Route>
+                  <Route path="/">
+                    <Landing />
+                  </Route>
               </Switch>
             </div>
+            <Button style={{color:'white'}}onClick={() => {ls.clear()}}>Clear Storage</Button>
+
           </div>
         </Router>
     );
