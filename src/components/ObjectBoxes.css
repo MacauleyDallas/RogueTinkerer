@@ -8,12 +8,11 @@
 .ItemSelectBox {
     padding:5px 10px;
     margin:0px;
-    border-right: 1px solid yellow;
+    border: 1px solid yellow;
     color:grey;
 }
 
 .ItemSelectBox:nth-last-child(1) {
-border: none;
 }
 
 .selectedItem {
