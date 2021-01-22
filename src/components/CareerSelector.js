@@ -9,7 +9,9 @@ export default class CareerSelector extends React.Component {
     constructor(props) {
         super(props);
         this.setSelectedItem = this.setSelectedItem.bind(this);
+        this.getImageHeight = this.getImageHeight.bind(this);
         this.state = {
+            imageHeight: 0,
             careerIndex: this.props.careerIndex,
             careerItems: []
          }
@@ -21,18 +23,28 @@ export default class CareerSelector extends React.Component {
 
     }
 
+    getImageHeight() {
+        let imageHeight = this.state.imageHeight
+        try {Array.from(document.getElementById('textContainer').children).forEach(element => {
+            imageHeight += element.offsetHeight + 16 + 16 
+        });}
+        catch {}
+        this.setState({imageHeight: imageHeight})
+    }
+  componentDidMount() {
+    this.getImageHeight()
+    }
+    
     render () {
         return (
             <Container maxWidth='xl'>
                 <div className='careerContainer'>
+                    <div>
                         <div>
-                        
-                        <div className='textContainer'>
-                            
                             <h2>{RuleBook.Career[this.props.careerIndex]['Title']}</h2>
-                            {RuleBook.Career[this.props.careerIndex]['Description'].map((Para, i) => <p>{i === 0 && <span><img src={'/images/careers/' + RuleBook.Career[this.props.careerIndex]['Image']}  className='careerImage' alt="image" /></span>}{Para}</p>)}
+                            <span><img style={{maxHeight: this.state.imageHeight}} src={'/images/careers/' + RuleBook.Career[this.props.careerIndex]['Image']}  className='careerImage' alt="image" /></span>
+                            <span id="textContainer">{RuleBook.Career[this.props.careerIndex]['Description'].map((Para, i) => <p>{Para}</p>)}</span>
                         </div>
-
 
                         <div className='startingStats'>
                             <h3 className="starterHeading">
@@ -49,7 +61,7 @@ export default class CareerSelector extends React.Component {
                             <h3 className="starterHeading">
                                 Starting Gear
                             </h3>
-                            <ObjectBoxes bookTag={'career'} choiceValues={this.props.choiceValues} arrayTitle={'careerStartingItems'} callback={this.setSelectedItem}  objects={RuleBook.Career[this.props.careerIndex]['StartingItems']} />
+                            <ObjectBoxes bookTag={'career'} choiceValues={this.props.choiceValues} arrayTitle={'careerStartingItems'} selected={this.props.choiceValues} callback={this.setSelectedItem}  objects={RuleBook.Career[this.props.careerIndex]['StartingItems']} />
 
                             
                         </div>
