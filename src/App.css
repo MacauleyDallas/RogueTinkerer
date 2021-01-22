@@ -14,6 +14,10 @@
 	pointer-events: none
 }
 
+#headerMenu nav {
+	pointer-events: all;
+}
+
 nav {
 	margin: 0px auto 0;
 	margin-bottom:5px;
