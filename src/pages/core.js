@@ -70,18 +70,11 @@ export default class Core extends React.Component {
     changeScroller(int, title) {
         if (int) {
           let ob1 = document.getElementById('v2AboveSelection')
-          
           let ob2 = document.getElementById('vBelowSelection')
-          
           let ob3 = document.getElementById('vSelection')
-          
           let ob4 = document.getElementById('v2BelowSelection')
-          
           let ob5 = document.getElementById('v3BelowSelection')
-          
           let ob6 = document.getElementById('vAboveSelection')
-          
-        
     
           ob5.id = 'v2AboveSelection'
           ob1.id = 'vAboveSelection'
@@ -91,17 +84,11 @@ export default class Core extends React.Component {
           ob4.id = 'v3BelowSelection'
           
         } else {
-          
           let ob1 = document.getElementById('v2AboveSelection')
-          
           let ob2 = document.getElementById('vAboveSelection')
-          
           let ob3 = document.getElementById('vSelection')
-          
           let ob4 = document.getElementById('vBelowSelection')
-          
           let ob5 = document.getElementById('v2BelowSelection')
-          
           let ob6 = document.getElementById('v3BelowSelection')
     
           ob1.id = 'v3BelowSelection'
@@ -141,7 +128,7 @@ export default class Core extends React.Component {
                     <div style={{top: document.body.clientHeight/2}} id="leftArrow"><NavigateBeforeIcon style={{fontSize:'40px'}} onClick={() => this.changePage(-1)}/></div>
                     <div style={{top: document.body.clientHeight/2}} id="rightArrow"><NavigateNextIcon style={{fontSize:'40px'}} onClick={() => this.changePage(1)}/></div>
 
-                    <div id='lifepathHeader'>
+            <div id='lifepathHeader'>
               <div id='headControl'>
                 <div id="leftControls">
                     
