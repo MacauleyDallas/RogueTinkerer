@@ -24,7 +24,7 @@ export default function SetSelectedItem(x, y, i, title, choiceValues, callback, 
     } else {
         choices[book][title][x]['Value'] = y
     }
-    console.log('we here b', choices)
 
+    // set state
     callback({choiceValues: choices})
  }
